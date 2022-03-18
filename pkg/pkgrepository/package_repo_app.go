@@ -26,7 +26,7 @@ func NewPackageRepoApp(pkgRepository *pkgingv1alpha1.PackageRepository) (*kcv1al
 	desiredApp.Generation = pkgRepository.Generation
 
 	kappRawOpts := []string{
-		"--wait-timeout=30s",
+		"--wait-timeout=0s", // note: i thought this would be infinite timeout but actually it seems like it's literal 0s but it still works somehow?
 		"--kube-api-qps=30",
 		"--kube-api-burst=40",
 		// Default kapp-controller service account allows listing all namespaces
@@ -50,7 +50,7 @@ func NewPackageRepoApp(pkgRepository *pkgingv1alpha1.PackageRepository) (*kcv1al
 		// "--existing-non-labeled-resources-check=false", // TODO: this was added for a reason but maybe we'd have to play with concurrency noted below...
 		// ... could in theory just lower concurrency, but decided to turn it off entirely.
 		// (on GKE, 6 was a sweet spot, 10 exhibited hanging behaviour)
-		// "--existing-non-labeled-resources-check-concurrency=6",
+		"--existing-non-labeled-resources-check-concurrency=6",
 	}, kappRawOpts...)
 
 	kappDeleteRawOpts := append([]string{}, kappRawOpts...)
