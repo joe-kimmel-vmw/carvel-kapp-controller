@@ -85,8 +85,6 @@ func NewPackageRepoApp(pkgRepository *pkgingv1alpha1.PackageRepository) (*kcv1al
 #@ pkg = overlay.subset({"apiVersion":"data.packaging.carvel.dev/v1alpha1", "kind": "Package"})
 #@ pkgm = overlay.subset({"apiVersion":"data.packaging.carvel.dev/v1alpha1", "kind": "PackageMetadata"})
 
-#@overlay/match by=overlay.not_op(overlay.or_op(pkg, pkgm)),expects="0+"
-#@overlay/remove
 ---
 
 #@overlay/match by=overlay.all,expects="0+"
