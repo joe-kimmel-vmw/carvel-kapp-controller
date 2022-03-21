@@ -18,13 +18,14 @@ func main() {
 	deployTimes := []string{}
 	deleteTimes := []string{}
 	for _, numPackages := range numPkgs {
+		time.Sleep(30 * time.Second) // I have a vague feeling like part of the problem is we just get ratelimited doing this test too fast.
 		totalPackages := numPackages * *numVersions
 		fmt.Printf("\n===========\n\t Starting for %d Packages\n===========\n", totalPackages)
 		fname := writePkgr(numPackages, *numVersions)
 		// defer os.Remove(fname)
 
 		t1 := time.Now()
-		cmd := exec.Command("kapp", "deploy", "-f", fname, "-a", fname[:len(fname)-5], "-y", "--wait-resource-timeout=0s", "--wait-timeout=0s")
+		cmd := exec.Command("kapp", "deploy", "-f", fname, "-a", fname[:len(fname)-5], "-y", "--wait-resource-timeout=0s")
 		stdout, err := cmd.Output()
 		fmt.Println(string(stdout))
 		if err != nil {
@@ -56,7 +57,7 @@ func main() {
 		panic(err)
 	}
 	defer f.Close()
-	f.WriteString(strings.Join(toStringArr(numPkgs), ", "))
+	f.WriteString(strings.Join(toStringArr(numPkgs), ", ")) // TODO: it's numPkgs * numVersions ...
 	f.WriteString("\n")
 	f.WriteString(strings.Join(deployTimes, ", "))
 	f.WriteString("\n")
