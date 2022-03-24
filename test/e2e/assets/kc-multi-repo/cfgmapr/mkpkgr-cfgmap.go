@@ -10,11 +10,11 @@ import (
 )
 
 func main() {
-	numPkgs := []int{20, 40, 100, 200, 400, 600, 1000, 1600}
+	numPkgs := []int{100, 200, 400, 600, 1000, 1600}
 	deployTimes := []string{}
 	deleteTimes := []string{}
 	for _, numCfgmaps := range numPkgs {
-		time.Sleep(30 * time.Second) // I have a vague feeling like part of the problem is we just get ratelimited doing this test too fast.
+		time.Sleep(1 * time.Second) // I have a vague feeling like part of the problem is we just get ratelimited doing this test too fast.
 		totalCfgmaps := numCfgmaps
 		fmt.Printf("\n===========\n\t Starting for %d Cfgmaps\n===========\n", totalCfgmaps)
 		fname := writePkgr(numCfgmaps)

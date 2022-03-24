@@ -14,11 +14,11 @@ func main() {
 	numVersions := flag.Int("numVers", 2, "The number of minor versions for each Package (total packages will be numPkgs x numVers)")
 	flag.Parse()
 
-	numPkgs := []int{10, 20, 50, 100, 200, 300, 500, 800}
+	numPkgs := []int{200, 300, 500}
 	deployTimes := []string{}
 	deleteTimes := []string{}
 	for _, numPackages := range numPkgs {
-		time.Sleep(30 * time.Second) // I have a vague feeling like part of the problem is we just get ratelimited doing this test too fast.
+		time.Sleep(1 * time.Second) // I have a vague feeling like part of the problem is we just get ratelimited doing this test too fast.
 		totalPackages := numPackages * *numVersions
 		fmt.Printf("\n===========\n\t Starting for %d Packages\n===========\n", totalPackages)
 		fname := writePkgr(numPackages, *numVersions)

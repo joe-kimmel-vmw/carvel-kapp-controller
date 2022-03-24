@@ -7,7 +7,7 @@ create_packaging_namespace: true
 #! clusters version 1.19 and below should disable APIPriorityAndFairness by setting the below to false
 enable_api_priority_and_fairness: true
 
-dangerous_enable_pprof: false
+dangerous_enable_pprof: true
 
 push_images: true
 image_cache: true
