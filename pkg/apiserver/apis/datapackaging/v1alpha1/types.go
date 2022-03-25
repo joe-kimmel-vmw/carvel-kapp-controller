@@ -57,6 +57,27 @@ type PackageMetadataList struct {
 	Items []PackageMetadata `json:"items" protobuf:"bytes,2,rep,name=items"`
 }
 
+// +genclient
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+// CarvelNoop is something I just made up. it doesn't do anything.
+type CarvelNoop struct {
+	metav1.TypeMeta `json:",inline"`
+
+	// Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata.
+	// +optional
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+}
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+// CarvelNoopList is a thing i made up
+type CarvelNoopList struct {
+	metav1.TypeMeta `json:",inline"`
+
+	// +optional
+	metav1.ListMeta `json:"metadata,omitempt" protobuf:"bytes,1,opt,name=metadata"`
+	Items           []CarvelNoop `json:",inline" protobuf:"bytes,2,rep,name=items"`
+}
+
 type PackageSpec struct {
 	RefName  string   `json:"refName,omitempty" protobuf:"bytes,1,opt,name=refName"`
 	Version  string   `json:"version,omitempty" protobuf:"bytes,2,opt,name=version"`

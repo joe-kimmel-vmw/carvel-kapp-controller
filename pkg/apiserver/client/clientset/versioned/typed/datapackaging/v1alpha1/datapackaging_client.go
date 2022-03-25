@@ -10,6 +10,7 @@ import (
 
 type DataV1alpha1Interface interface {
 	RESTClient() rest.Interface
+	CarvelNoopsGetter
 	PackagesGetter
 	PackageMetadatasGetter
 }
@@ -17,6 +18,10 @@ type DataV1alpha1Interface interface {
 // DataV1alpha1Client is used to interact with features provided by the data.packaging.carvel.dev group.
 type DataV1alpha1Client struct {
 	restClient rest.Interface
+}
+
+func (c *DataV1alpha1Client) CarvelNoops(namespace string) CarvelNoopInterface {
+	return newCarvelNoops(c, namespace)
 }
 
 func (c *DataV1alpha1Client) Packages(namespace string) PackageInterface {

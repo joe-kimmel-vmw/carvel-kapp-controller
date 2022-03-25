@@ -30,6 +30,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&PackageMetadataList{},
 		&Package{},
 		&PackageList{},
+		&CarvelNoop{},
+		&CarvelNoopList{},
 	)
 	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
 	return nil

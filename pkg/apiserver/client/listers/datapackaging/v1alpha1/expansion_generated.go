@@ -2,6 +2,14 @@
 
 package v1alpha1
 
+// CarvelNoopListerExpansion allows custom methods to be added to
+// CarvelNoopLister.
+type CarvelNoopListerExpansion interface{}
+
+// CarvelNoopNamespaceListerExpansion allows custom methods to be added to
+// CarvelNoopNamespaceLister.
+type CarvelNoopNamespaceListerExpansion interface{}
+
 // PackageListerExpansion allows custom methods to be added to
 // PackageLister.
 type PackageListerExpansion interface{}

@@ -35,6 +35,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&PackageMetadataList{},
 		&Package{},
 		&PackageList{},
+		&CarvelNoop{},
+		&CarvelNoopList{},
 	)
 	return nil
 }

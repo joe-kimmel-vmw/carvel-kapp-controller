@@ -17,6 +17,21 @@ message AppTemplateSpec {
   optional github.com.vmware_tanzu.carvel_kapp_controller.pkg.apis.kappctrl.v1alpha1.AppSpec spec = 1;
 }
 
+// +genclient
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+// CarvelNoop is something I just made up. it doesn't do anything.
+message CarvelNoop {
+}
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+// CarvelNoopList is a thing i made up
+message CarvelNoopList {
+  // +optional
+  optional k8s.io.apimachinery.pkg.apis.meta.v1.ListMeta metadata = 1;
+
+  repeated CarvelNoop items = 2;
+}
+
 message Maintainer {
   optional string name = 1;
 }

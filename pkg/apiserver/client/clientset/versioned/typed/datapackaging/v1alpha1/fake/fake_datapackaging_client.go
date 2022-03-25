@@ -12,6 +12,10 @@ type FakeDataV1alpha1 struct {
 	*testing.Fake
 }
 
+func (c *FakeDataV1alpha1) CarvelNoops(namespace string) v1alpha1.CarvelNoopInterface {
+	return &FakeCarvelNoops{c, namespace}
+}
+
 func (c *FakeDataV1alpha1) Packages(namespace string) v1alpha1.PackageInterface {
 	return &FakePackages{c, namespace}
 }
