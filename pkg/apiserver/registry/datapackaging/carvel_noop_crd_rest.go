@@ -68,7 +68,7 @@ func (r *CarvelNoopREST) Get(ctx context.Context, name string, options *metav1.G
 }
 
 func (r *CarvelNoopREST) List(ctx context.Context, options *internalversion.ListOptions) (runtime.Object, error) {
-	return &datapackaging.CarvelNoopList{}, nil
+	return &datapackaging.CarvelNoopList{Items: []datapackaging.CarvelNoop{datapackaging.CarvelNoop{ObjectMeta: v1.ObjectMeta{Name: "foo", Namespace: "default"}}}}, nil
 }
 
 func (r *CarvelNoopREST) Update(ctx context.Context, name string, objInfo rest.UpdatedObjectInfo, createValidation rest.ValidateObjectFunc, updateValidation rest.ValidateObjectUpdateFunc, forceAllowCreate bool, options *metav1.UpdateOptions) (runtime.Object, bool, error) {

@@ -37,7 +37,7 @@ rules:
   resources: ["internalpackages"]
   verbs: ["*"]
 - apiGroups: ["data.packaging.carvel.dev"]
-  resources: ["packages", "packages/status"]
+  resources: ["packages", "packages/status", "carvelnoops"]
   verbs: ["*"]
 #! TODO Needed for kapp-controller when deploying
 #! repository App CR (temporarily needed only for POC)
