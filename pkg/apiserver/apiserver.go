@@ -102,11 +102,13 @@ func NewAPIServer(clientConfig *rest.Config, coreClient kubernetes.Interface, kc
 
 	packageMetadatasStorage := packagerest.NewPackageMetadataCRDREST(kcClient, coreClient, opts.GlobalNamespace)
 	packageStorage := packagerest.NewPackageCRDREST(kcClient, coreClient, opts.GlobalNamespace)
+	noopStorage := packagerest.NewCarvelNoopREST(kcClient, coreClient, opts.GlobalNamespace)
 
 	pkgGroup := genericapiserver.NewDefaultAPIGroupInfo(datapackaging.GroupName, Scheme, metav1.ParameterCodec, Codecs)
 	pkgv1alpha1Storage := map[string]apirest.Storage{}
 	pkgv1alpha1Storage["packagemetadatas"] = packageMetadatasStorage
 	pkgv1alpha1Storage["Packages"] = packageStorage
+	pkgv1alpha1Storage["carvelnoops"] = noopStorage
 	pkgGroup.VersionedResourcesStorageMap["v1alpha1"] = pkgv1alpha1Storage
 
 	err = server.InstallAPIGroup(&pkgGroup)
