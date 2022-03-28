@@ -35,6 +35,7 @@ func (in *AppTemplateSpec) DeepCopy() *AppTemplateSpec {
 func (in *CarvelNoop) DeepCopyInto(out *CarvelNoop) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
+	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
 	return
 }
 
@@ -64,7 +65,9 @@ func (in *CarvelNoopList) DeepCopyInto(out *CarvelNoopList) {
 	if in.Items != nil {
 		in, out := &in.Items, &out.Items
 		*out = make([]CarvelNoop, len(*in))
-		copy(*out, *in)
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
 	}
 	return
 }

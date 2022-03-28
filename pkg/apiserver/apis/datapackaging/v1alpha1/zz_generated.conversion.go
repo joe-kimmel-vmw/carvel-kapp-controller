@@ -155,6 +155,7 @@ func Convert_datapackaging_AppTemplateSpec_To_v1alpha1_AppTemplateSpec(in *datap
 }
 
 func autoConvert_v1alpha1_CarvelNoop_To_datapackaging_CarvelNoop(in *CarvelNoop, out *datapackaging.CarvelNoop, s conversion.Scope) error {
+	out.ObjectMeta = in.ObjectMeta
 	return nil
 }
 
@@ -164,6 +165,7 @@ func Convert_v1alpha1_CarvelNoop_To_datapackaging_CarvelNoop(in *CarvelNoop, out
 }
 
 func autoConvert_datapackaging_CarvelNoop_To_v1alpha1_CarvelNoop(in *datapackaging.CarvelNoop, out *CarvelNoop, s conversion.Scope) error {
+	out.ObjectMeta = in.ObjectMeta
 	return nil
 }
 

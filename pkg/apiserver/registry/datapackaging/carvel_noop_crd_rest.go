@@ -59,7 +59,12 @@ func (r *CarvelNoopREST) Create(ctx context.Context, obj runtime.Object, createV
 }
 
 func (r *CarvelNoopREST) Get(ctx context.Context, name string, options *metav1.GetOptions) (runtime.Object, error) {
-	return &datapackaging.CarvelNoop{}, nil
+	return &datapackaging.CarvelNoop{
+		ObjectMeta: v1.ObjectMeta{
+			Name:      "foo",
+			Namespace: "default",
+		},
+	}, nil
 }
 
 func (r *CarvelNoopREST) List(ctx context.Context, options *internalversion.ListOptions) (runtime.Object, error) {
