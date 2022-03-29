@@ -61,8 +61,9 @@ func (r *CarvelNoopREST) Create(ctx context.Context, obj runtime.Object, createV
 func (r *CarvelNoopREST) Get(ctx context.Context, name string, options *metav1.GetOptions) (runtime.Object, error) {
 	return &datapackaging.CarvelNoop{
 		ObjectMeta: v1.ObjectMeta{
-			Name:      "foo",
-			Namespace: "default",
+			Name:        "foo",
+			Namespace:   "default",
+			Annotations: map[string]string{"kapp.k14s.io/disable-original": ""},
 		},
 	}, nil
 }
@@ -72,7 +73,13 @@ func (r *CarvelNoopREST) List(ctx context.Context, options *internalversion.List
 }
 
 func (r *CarvelNoopREST) Update(ctx context.Context, name string, objInfo rest.UpdatedObjectInfo, createValidation rest.ValidateObjectFunc, updateValidation rest.ValidateObjectUpdateFunc, forceAllowCreate bool, options *metav1.UpdateOptions) (runtime.Object, bool, error) {
-	return &datapackaging.CarvelNoop{}, false, nil
+	return &datapackaging.CarvelNoop{
+		ObjectMeta: v1.ObjectMeta{
+			Name:        "foo",
+			Namespace:   "default",
+			Annotations: map[string]string{"kapp.k14s.io/disable-original": ""},
+		},
+	}, true, nil
 }
 
 func (r *CarvelNoopREST) Delete(ctx context.Context, name string, deleteValidation rest.ValidateObjectFunc, options *metav1.DeleteOptions) (runtime.Object, bool, error) {
