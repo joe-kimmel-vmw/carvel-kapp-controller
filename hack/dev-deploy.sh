@@ -22,7 +22,7 @@ tail -n +$run_image_start Dockerfile | \
    sed 's/usr\/local\/bin\///' \
    >> Dockerfile.dev
 
-echo "COPY examples/simple-app-http.yml ." >> Dockerfile.dev
+echo "COPY configmap.yml ." >> Dockerfile.dev
 
 ytt -f config/ -f config-dev-deploy/ | kbld -f- | kapp deploy -a kc -f- -c -y
 

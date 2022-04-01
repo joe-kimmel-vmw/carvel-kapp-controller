@@ -64,7 +64,7 @@ func (r *CarvelNoopREST) Create(ctx context.Context, obj runtime.Object, createV
 
 	cnop := obj.(*datapackaging.CarvelNoop)
 	noopStorage[cnop.Name] = true
-	// r.kappDeploy()
+	r.kappDeploy()
 	return &datapackaging.CarvelNoop{
 		ObjectMeta: v1.ObjectMeta{
 			Name:        cnop.Name,
@@ -98,12 +98,12 @@ func (r *CarvelNoopREST) Update(ctx context.Context, name string, objInfo rest.U
 	if err != nil {
 		return nil, false, err
 	}
-	// r.kappDeploy()
+	r.kappDeploy()
 	return cnop, true, nil
 }
 
 func (r *CarvelNoopREST) kappDeploy() {
-	cmd := exec.Command("/kapp", "deploy", "-a", "kcsimpleapp", "-f", "/simple-app-http.yml", "-y")
+	cmd := exec.Command("/kapp", "deploy", "-a", "kcsingletoncfgmap", "-f", "/configmap.yml", "-y")
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	err := cmd.Run()
@@ -112,6 +112,17 @@ func (r *CarvelNoopREST) kappDeploy() {
 		fmt.Printf("Error applying static app: %s\n", out.String())
 	}
 	// fmt.Println("XX kapp deployed: \n", out.String())
+}
+
+func (r *CarvelNoopREST) kubectlDeploy() {
+	cmd := exec.Command("/kubectl", "apply", "-f", "/configmap.yml")
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println(err.Error())
+		fmt.Printf("Error applying static app: %s\n", out.String())
+	}
 }
 
 func (r *CarvelNoopREST) Delete(ctx context.Context, name string, deleteValidation rest.ValidateObjectFunc, options *metav1.DeleteOptions) (runtime.Object, bool, error) {
