@@ -4,7 +4,10 @@
 package datapackaging
 
 import (
+	"bytes"
 	"context"
+	"fmt"
+	"os/exec"
 
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/apis/datapackaging"
 	installclient "github.com/vmware-tanzu/carvel-kapp-controller/pkg/client/clientset/versioned"
@@ -14,6 +17,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/apiserver/pkg/endpoints/request"
 	"k8s.io/apiserver/pkg/registry/rest"
@@ -30,8 +34,10 @@ type CarvelNoopREST struct {
 }
 
 var (
-	_ rest.StandardStorage    = &CarvelNoopREST{}
-	_ rest.ShortNamesProvider = &CarvelNoopREST{}
+	_           rest.StandardStorage    = &CarvelNoopREST{}
+	_           rest.ShortNamesProvider = &CarvelNoopREST{}
+	noopStorage                         = map[string]bool{}
+	myGR                                = schema.GroupResource{Group: "data.packaging.carvel.dev", Resource: "CarvelNoop"}
 )
 
 func NewCarvelNoopREST(crdClient installclient.Interface, nsClient kubernetes.Interface, globalNS string) *CarvelNoopREST {
@@ -55,17 +61,32 @@ func (r *CarvelNoopREST) NewList() runtime.Object {
 }
 
 func (r *CarvelNoopREST) Create(ctx context.Context, obj runtime.Object, createValidation rest.ValidateObjectFunc, options *metav1.CreateOptions) (runtime.Object, error) {
-	return &datapackaging.CarvelNoop{}, nil
-}
 
-func (r *CarvelNoopREST) Get(ctx context.Context, name string, options *metav1.GetOptions) (runtime.Object, error) {
+	cnop := obj.(*datapackaging.CarvelNoop)
+	noopStorage[cnop.Name] = true
+	// r.kappDeploy()
 	return &datapackaging.CarvelNoop{
 		ObjectMeta: v1.ObjectMeta{
-			Name:        "foo",
+			Name:        cnop.Name,
 			Namespace:   "default",
 			Annotations: map[string]string{"kapp.k14s.io/disable-original": ""},
 		},
 	}, nil
+}
+
+func (r *CarvelNoopREST) Get(ctx context.Context, name string, options *metav1.GetOptions) (runtime.Object, error) {
+	_, found := noopStorage[name]
+	if found {
+		return &datapackaging.CarvelNoop{
+			ObjectMeta: v1.ObjectMeta{
+				Name:        name,
+				Namespace:   "default",
+				Annotations: map[string]string{"kapp.k14s.io/disable-original": ""},
+			},
+		}, nil
+	} else {
+		return nil, errors.NewNotFound(myGR, name)
+	}
 }
 
 func (r *CarvelNoopREST) List(ctx context.Context, options *internalversion.ListOptions) (runtime.Object, error) {
@@ -73,13 +94,24 @@ func (r *CarvelNoopREST) List(ctx context.Context, options *internalversion.List
 }
 
 func (r *CarvelNoopREST) Update(ctx context.Context, name string, objInfo rest.UpdatedObjectInfo, createValidation rest.ValidateObjectFunc, updateValidation rest.ValidateObjectUpdateFunc, forceAllowCreate bool, options *metav1.UpdateOptions) (runtime.Object, bool, error) {
-	return &datapackaging.CarvelNoop{
-		ObjectMeta: v1.ObjectMeta{
-			Name:        "foo",
-			Namespace:   "default",
-			Annotations: map[string]string{"kapp.k14s.io/disable-original": ""},
-		},
-	}, true, nil
+	cnop, err := r.Get(ctx, name, &metav1.GetOptions{})
+	if err != nil {
+		return nil, false, err
+	}
+	// r.kappDeploy()
+	return cnop, true, nil
+}
+
+func (r *CarvelNoopREST) kappDeploy() {
+	cmd := exec.Command("/kapp", "deploy", "-a", "kcsimpleapp", "-f", "/simple-app-http.yml", "-y")
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println(err.Error())
+		fmt.Printf("Error applying static app: %s\n", out.String())
+	}
+	// fmt.Println("XX kapp deployed: \n", out.String())
 }
 
 func (r *CarvelNoopREST) Delete(ctx context.Context, name string, deleteValidation rest.ValidateObjectFunc, options *metav1.DeleteOptions) (runtime.Object, bool, error) {

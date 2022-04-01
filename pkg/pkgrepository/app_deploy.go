@@ -30,7 +30,7 @@ func (a *App) deploy(tplOutput string) exec.CmdRunResult {
 			return exec.NewCmdRunResultWithErr(fmt.Errorf("Preparing kapp: %s", err))
 		}
 
-		fmt.Println("XX Templated output to kapp:\n", tplOutput, "\nXX")
+		// fmt.Println("XX Templated output to kapp:\n", tplOutput, "\nXX")
 
 		return kapp.Deploy(appendRebaseRule(tplOutput), a.startFlushingAllStatusUpdates, func(exec.CmdRunResult) {})
 

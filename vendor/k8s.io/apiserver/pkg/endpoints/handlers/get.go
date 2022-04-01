@@ -107,7 +107,9 @@ func GetResource(r rest.Getter, scope *RequestScope) http.HandlerFunc {
 			if trace != nil {
 				trace.Step("About to Get from storage")
 			}
-			return r.Get(ctx, name, &options)
+			a, b := r.Get(ctx, name, &options)
+			// fmt.Println("k8s apiserver GET got: ", a, " with error: ", b)
+			return a, b
 		})
 }
 

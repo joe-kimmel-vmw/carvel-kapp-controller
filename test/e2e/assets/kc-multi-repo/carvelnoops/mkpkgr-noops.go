@@ -94,7 +94,7 @@ spec:
           kind: CarvelNoop
           apiVersion: data.packaging.carvel.dev/v1alpha1
           metadata:
-            name: "foo"
+            name: "foo%[1]d"
             namespace: "default"
 `
 	fname := fmt.Sprintf("pkgr-%d.yaml", totalCnoops)
