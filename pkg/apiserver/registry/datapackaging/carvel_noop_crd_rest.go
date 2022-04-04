@@ -64,7 +64,7 @@ func (r *CarvelNoopREST) Create(ctx context.Context, obj runtime.Object, createV
 
 	cnop := obj.(*datapackaging.CarvelNoop)
 	noopStorage[cnop.Name] = true
-	r.kappDeploy()
+	// r.kappDeploy()
 	return &datapackaging.CarvelNoop{
 		ObjectMeta: v1.ObjectMeta{
 			Name:        cnop.Name,
@@ -98,7 +98,7 @@ func (r *CarvelNoopREST) Update(ctx context.Context, name string, objInfo rest.U
 	if err != nil {
 		return nil, false, err
 	}
-	r.kappDeploy()
+	// r.kappDeploy()
 	return cnop, true, nil
 }
 
