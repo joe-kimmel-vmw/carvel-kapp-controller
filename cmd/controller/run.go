@@ -75,6 +75,14 @@ func Run(opts Options, runLog logr.Logger) error {
 		return fmt.Errorf("Building kappctrl client: %s", err)
 	}
 
+	restConfig2 := config.GetConfigOrDie()
+	restConfig2.QPS = 100
+	restConfig2.Burst = 100
+	kcClient2, err := kcclient.NewForConfig(restConfig2)
+	if err != nil {
+		return fmt.Errorf("Building kappctrl client: %s", err)
+	}
+
 	kcConfig, err := kcconfig.GetConfig(coreClient)
 	if err != nil {
 		return fmt.Errorf("getting kapp-controller config: %s", err)
@@ -100,7 +108,7 @@ func Run(opts Options, runLog logr.Logger) error {
 		return fmt.Errorf("Expected to find %s env var", kappctrlAPIPORTEnvKey)
 	}
 
-	server, err := apiserver.NewAPIServer(restConfig, coreClient, kcClient, apiserver.NewAPIServerOpts{
+	server, err := apiserver.NewAPIServer(restConfig, coreClient, kcClient2, apiserver.NewAPIServerOpts{
 		GlobalNamespace: opts.PackagingGloablNS, BindPort: bindPort, EnableAPIPriorityAndFairness: opts.APIPriorityAndFairness})
 	if err != nil {
 		return fmt.Errorf("Building API server: %s", err)
