@@ -29,7 +29,7 @@ import (
 // complexities associated with custom storage options for now.
 type PackageCRDREST struct {
 	crdClient       installclient.Interface
-	nsClient        kubernetes.Interface
+	nsClient        kubernetes.Interface // change this to be one that caches namespace
 	globalNamespace string
 }
 
@@ -77,13 +77,20 @@ func (r *PackageCRDREST) Create(ctx context.Context, obj runtime.Object, createV
 	return client.Create(ctx, namespace, pkg, *options)
 }
 
-func (r *PackageCRDREST) shouldFetchGlobal(ctx context.Context, namespace string) bool {
-	ns, err := r.nsClient.CoreV1().Namespaces().Get(ctx, namespace, metav1.GetOptions{})
-	if err != nil {
-		return false
-	}
-	_, exclude := ns.ObjectMeta.Annotations[excludeGlobalPackagesAnn]
-	return namespace != r.globalNamespace && namespace != "" && !exclude
+// cache: set up a watch on namespaces , "informer" so that when we do a get on the namespace it returns the cached copy but the watch is also updating.
+// and: when we make a change to namespaces inside deleteGlobalPackagesFromNS we don't want to wait for that even to trickle back to us.
+// namespaces collection object that hides impl, and then PackageCRDRest and PKGMetadata use that object...
+// "the cache is effectively done for you by using the client from the controller runtime. - pkgcrdrest class takes a kc client and core client - see if the core client is used for anything else
+func (r *PackageCRDREST) shouldFetchGlobal(_ context.Context, _ string) bool { //ctx context.Context, namespace string) bool {
+	return false
+	/*
+		ns, err := r.nsClient.CoreV1().Namespaces().Get(ctx, namespace, metav1.GetOptions{})
+		if err != nil {
+			return false
+		}
+		_, exclude := ns.ObjectMeta.Annotations[excludeGlobalPackagesAnn]
+		return namespace != r.globalNamespace && namespace != "" && !exclude
+	*/
 }
 
 func (r *PackageCRDREST) Get(ctx context.Context, name string, options *metav1.GetOptions) (runtime.Object, error) {
