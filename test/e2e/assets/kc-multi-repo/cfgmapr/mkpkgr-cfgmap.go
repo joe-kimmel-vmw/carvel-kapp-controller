@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	numPkgs := []int{2} // 100, 200, 400, 600, 1000, 1600}
+	numPkgs := []int{200, 1000} // 100, 200, 400, 600, 1000, 1600}
 	deployTimes := []string{}
 	deleteTimes := []string{}
 	for _, numCfgmaps := range numPkgs {

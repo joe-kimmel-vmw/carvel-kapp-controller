@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	numPkgs := []int{20, 40, 100, 200, 400, 600, 1000, 1600}
+	numPkgs := []int{200, 1000} //{20, 40, 100, 200, 400, 600, 1000, 1600}
 	deployTimes := []string{}
 	deleteTimes := []string{}
 	for _, numCnoops := range numPkgs {
