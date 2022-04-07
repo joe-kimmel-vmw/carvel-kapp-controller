@@ -1,0 +1,62 @@
+
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: minimal-repo-4.tanzu.carvel.dev
+  # Adds it to global namespace (as defined by kapp-controller)
+  # which makes packages available in all namespaces
+  namespace: kapp-controller-packaging-global
+  annotations:
+    kapp.k14s.io/disable-original: ""
+spec:
+  fetch:
+    inline:
+      paths:
+
+        packages/pkg.test.carvel.dev/pkg0.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg0.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg0.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg0.test.carvel.dev.0.1.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg0.test.carvel.dev.0.1.0
+          spec:
+            refName: pkg0.test.carvel.dev
+            version: 0.1.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg1.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg1.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg1.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg1.test.carvel.dev.0.1.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg1.test.carvel.dev.0.1.0
+          spec:
+            refName: pkg1.test.carvel.dev
+            version: 0.1.0
+            template:
+              spec: {}

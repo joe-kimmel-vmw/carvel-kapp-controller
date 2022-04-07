@@ -1,0 +1,172 @@
+
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: minimal-repo-20.tanzu.carvel.dev
+  namespace: default
+  annotations:
+    kapp.k14s.io/disable-original: ""
+spec:
+  fetch:
+    inline:
+      paths:
+
+        packages/pkg.test.carvel.dev/noop0.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo0"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop1.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo1"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop2.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo2"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop3.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo3"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop4.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo4"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop5.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo5"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop6.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo6"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop7.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo7"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop8.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo8"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop9.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo9"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop10.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo10"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop11.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo11"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop12.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo12"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop13.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo13"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop14.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo14"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop15.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo15"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop16.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo16"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop17.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo17"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop18.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo18"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop19.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo19"
+            namespace: "default"

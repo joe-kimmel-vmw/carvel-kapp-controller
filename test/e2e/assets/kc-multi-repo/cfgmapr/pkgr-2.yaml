@@ -1,0 +1,32 @@
+
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: minimal-repo-2.tanzu.carvel.dev
+  # Adds it to global namespace (as defined by kapp-controller)
+  # which makes packages available in all namespaces
+  namespace: kapp-controller-packaging-global
+  annotations:
+    kapp.k14s.io/disable-original: ""
+spec:
+  fetch:
+    inline:
+      paths:
+
+        packages/pkg.test.carvel.dev/cfgmap0.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-0
+          data:
+            player_initial_lives: "0"
+
+        packages/pkg.test.carvel.dev/cfgmap1.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-1
+          data:
+            player_initial_lives: "1"

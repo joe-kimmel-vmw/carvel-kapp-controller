@@ -1,0 +1,3614 @@
+
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: minimal-repo-400.tanzu.carvel.dev
+  # Adds it to global namespace (as defined by kapp-controller)
+  # which makes packages available in all namespaces
+  namespace: kapp-controller-packaging-global
+  annotations:
+    kapp.k14s.io/disable-original: ""
+spec:
+  fetch:
+    inline:
+      paths:
+
+        packages/pkg.test.carvel.dev/cfgmap0.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-0
+          data:
+            player_initial_lives: "0"
+
+        packages/pkg.test.carvel.dev/cfgmap1.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-1
+          data:
+            player_initial_lives: "1"
+
+        packages/pkg.test.carvel.dev/cfgmap2.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-2
+          data:
+            player_initial_lives: "2"
+
+        packages/pkg.test.carvel.dev/cfgmap3.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-3
+          data:
+            player_initial_lives: "3"
+
+        packages/pkg.test.carvel.dev/cfgmap4.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-4
+          data:
+            player_initial_lives: "4"
+
+        packages/pkg.test.carvel.dev/cfgmap5.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-5
+          data:
+            player_initial_lives: "5"
+
+        packages/pkg.test.carvel.dev/cfgmap6.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-6
+          data:
+            player_initial_lives: "6"
+
+        packages/pkg.test.carvel.dev/cfgmap7.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-7
+          data:
+            player_initial_lives: "7"
+
+        packages/pkg.test.carvel.dev/cfgmap8.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-8
+          data:
+            player_initial_lives: "8"
+
+        packages/pkg.test.carvel.dev/cfgmap9.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-9
+          data:
+            player_initial_lives: "9"
+
+        packages/pkg.test.carvel.dev/cfgmap10.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-10
+          data:
+            player_initial_lives: "10"
+
+        packages/pkg.test.carvel.dev/cfgmap11.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-11
+          data:
+            player_initial_lives: "11"
+
+        packages/pkg.test.carvel.dev/cfgmap12.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-12
+          data:
+            player_initial_lives: "12"
+
+        packages/pkg.test.carvel.dev/cfgmap13.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-13
+          data:
+            player_initial_lives: "13"
+
+        packages/pkg.test.carvel.dev/cfgmap14.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-14
+          data:
+            player_initial_lives: "14"
+
+        packages/pkg.test.carvel.dev/cfgmap15.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-15
+          data:
+            player_initial_lives: "15"
+
+        packages/pkg.test.carvel.dev/cfgmap16.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-16
+          data:
+            player_initial_lives: "16"
+
+        packages/pkg.test.carvel.dev/cfgmap17.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-17
+          data:
+            player_initial_lives: "17"
+
+        packages/pkg.test.carvel.dev/cfgmap18.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-18
+          data:
+            player_initial_lives: "18"
+
+        packages/pkg.test.carvel.dev/cfgmap19.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-19
+          data:
+            player_initial_lives: "19"
+
+        packages/pkg.test.carvel.dev/cfgmap20.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-20
+          data:
+            player_initial_lives: "20"
+
+        packages/pkg.test.carvel.dev/cfgmap21.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-21
+          data:
+            player_initial_lives: "21"
+
+        packages/pkg.test.carvel.dev/cfgmap22.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-22
+          data:
+            player_initial_lives: "22"
+
+        packages/pkg.test.carvel.dev/cfgmap23.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-23
+          data:
+            player_initial_lives: "23"
+
+        packages/pkg.test.carvel.dev/cfgmap24.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-24
+          data:
+            player_initial_lives: "24"
+
+        packages/pkg.test.carvel.dev/cfgmap25.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-25
+          data:
+            player_initial_lives: "25"
+
+        packages/pkg.test.carvel.dev/cfgmap26.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-26
+          data:
+            player_initial_lives: "26"
+
+        packages/pkg.test.carvel.dev/cfgmap27.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-27
+          data:
+            player_initial_lives: "27"
+
+        packages/pkg.test.carvel.dev/cfgmap28.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-28
+          data:
+            player_initial_lives: "28"
+
+        packages/pkg.test.carvel.dev/cfgmap29.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-29
+          data:
+            player_initial_lives: "29"
+
+        packages/pkg.test.carvel.dev/cfgmap30.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-30
+          data:
+            player_initial_lives: "30"
+
+        packages/pkg.test.carvel.dev/cfgmap31.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-31
+          data:
+            player_initial_lives: "31"
+
+        packages/pkg.test.carvel.dev/cfgmap32.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-32
+          data:
+            player_initial_lives: "32"
+
+        packages/pkg.test.carvel.dev/cfgmap33.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-33
+          data:
+            player_initial_lives: "33"
+
+        packages/pkg.test.carvel.dev/cfgmap34.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-34
+          data:
+            player_initial_lives: "34"
+
+        packages/pkg.test.carvel.dev/cfgmap35.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-35
+          data:
+            player_initial_lives: "35"
+
+        packages/pkg.test.carvel.dev/cfgmap36.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-36
+          data:
+            player_initial_lives: "36"
+
+        packages/pkg.test.carvel.dev/cfgmap37.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-37
+          data:
+            player_initial_lives: "37"
+
+        packages/pkg.test.carvel.dev/cfgmap38.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-38
+          data:
+            player_initial_lives: "38"
+
+        packages/pkg.test.carvel.dev/cfgmap39.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-39
+          data:
+            player_initial_lives: "39"
+
+        packages/pkg.test.carvel.dev/cfgmap40.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-40
+          data:
+            player_initial_lives: "40"
+
+        packages/pkg.test.carvel.dev/cfgmap41.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-41
+          data:
+            player_initial_lives: "41"
+
+        packages/pkg.test.carvel.dev/cfgmap42.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-42
+          data:
+            player_initial_lives: "42"
+
+        packages/pkg.test.carvel.dev/cfgmap43.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-43
+          data:
+            player_initial_lives: "43"
+
+        packages/pkg.test.carvel.dev/cfgmap44.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-44
+          data:
+            player_initial_lives: "44"
+
+        packages/pkg.test.carvel.dev/cfgmap45.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-45
+          data:
+            player_initial_lives: "45"
+
+        packages/pkg.test.carvel.dev/cfgmap46.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-46
+          data:
+            player_initial_lives: "46"
+
+        packages/pkg.test.carvel.dev/cfgmap47.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-47
+          data:
+            player_initial_lives: "47"
+
+        packages/pkg.test.carvel.dev/cfgmap48.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-48
+          data:
+            player_initial_lives: "48"
+
+        packages/pkg.test.carvel.dev/cfgmap49.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-49
+          data:
+            player_initial_lives: "49"
+
+        packages/pkg.test.carvel.dev/cfgmap50.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-50
+          data:
+            player_initial_lives: "50"
+
+        packages/pkg.test.carvel.dev/cfgmap51.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-51
+          data:
+            player_initial_lives: "51"
+
+        packages/pkg.test.carvel.dev/cfgmap52.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-52
+          data:
+            player_initial_lives: "52"
+
+        packages/pkg.test.carvel.dev/cfgmap53.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-53
+          data:
+            player_initial_lives: "53"
+
+        packages/pkg.test.carvel.dev/cfgmap54.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-54
+          data:
+            player_initial_lives: "54"
+
+        packages/pkg.test.carvel.dev/cfgmap55.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-55
+          data:
+            player_initial_lives: "55"
+
+        packages/pkg.test.carvel.dev/cfgmap56.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-56
+          data:
+            player_initial_lives: "56"
+
+        packages/pkg.test.carvel.dev/cfgmap57.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-57
+          data:
+            player_initial_lives: "57"
+
+        packages/pkg.test.carvel.dev/cfgmap58.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-58
+          data:
+            player_initial_lives: "58"
+
+        packages/pkg.test.carvel.dev/cfgmap59.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-59
+          data:
+            player_initial_lives: "59"
+
+        packages/pkg.test.carvel.dev/cfgmap60.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-60
+          data:
+            player_initial_lives: "60"
+
+        packages/pkg.test.carvel.dev/cfgmap61.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-61
+          data:
+            player_initial_lives: "61"
+
+        packages/pkg.test.carvel.dev/cfgmap62.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-62
+          data:
+            player_initial_lives: "62"
+
+        packages/pkg.test.carvel.dev/cfgmap63.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-63
+          data:
+            player_initial_lives: "63"
+
+        packages/pkg.test.carvel.dev/cfgmap64.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-64
+          data:
+            player_initial_lives: "64"
+
+        packages/pkg.test.carvel.dev/cfgmap65.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-65
+          data:
+            player_initial_lives: "65"
+
+        packages/pkg.test.carvel.dev/cfgmap66.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-66
+          data:
+            player_initial_lives: "66"
+
+        packages/pkg.test.carvel.dev/cfgmap67.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-67
+          data:
+            player_initial_lives: "67"
+
+        packages/pkg.test.carvel.dev/cfgmap68.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-68
+          data:
+            player_initial_lives: "68"
+
+        packages/pkg.test.carvel.dev/cfgmap69.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-69
+          data:
+            player_initial_lives: "69"
+
+        packages/pkg.test.carvel.dev/cfgmap70.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-70
+          data:
+            player_initial_lives: "70"
+
+        packages/pkg.test.carvel.dev/cfgmap71.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-71
+          data:
+            player_initial_lives: "71"
+
+        packages/pkg.test.carvel.dev/cfgmap72.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-72
+          data:
+            player_initial_lives: "72"
+
+        packages/pkg.test.carvel.dev/cfgmap73.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-73
+          data:
+            player_initial_lives: "73"
+
+        packages/pkg.test.carvel.dev/cfgmap74.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-74
+          data:
+            player_initial_lives: "74"
+
+        packages/pkg.test.carvel.dev/cfgmap75.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-75
+          data:
+            player_initial_lives: "75"
+
+        packages/pkg.test.carvel.dev/cfgmap76.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-76
+          data:
+            player_initial_lives: "76"
+
+        packages/pkg.test.carvel.dev/cfgmap77.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-77
+          data:
+            player_initial_lives: "77"
+
+        packages/pkg.test.carvel.dev/cfgmap78.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-78
+          data:
+            player_initial_lives: "78"
+
+        packages/pkg.test.carvel.dev/cfgmap79.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-79
+          data:
+            player_initial_lives: "79"
+
+        packages/pkg.test.carvel.dev/cfgmap80.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-80
+          data:
+            player_initial_lives: "80"
+
+        packages/pkg.test.carvel.dev/cfgmap81.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-81
+          data:
+            player_initial_lives: "81"
+
+        packages/pkg.test.carvel.dev/cfgmap82.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-82
+          data:
+            player_initial_lives: "82"
+
+        packages/pkg.test.carvel.dev/cfgmap83.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-83
+          data:
+            player_initial_lives: "83"
+
+        packages/pkg.test.carvel.dev/cfgmap84.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-84
+          data:
+            player_initial_lives: "84"
+
+        packages/pkg.test.carvel.dev/cfgmap85.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-85
+          data:
+            player_initial_lives: "85"
+
+        packages/pkg.test.carvel.dev/cfgmap86.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-86
+          data:
+            player_initial_lives: "86"
+
+        packages/pkg.test.carvel.dev/cfgmap87.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-87
+          data:
+            player_initial_lives: "87"
+
+        packages/pkg.test.carvel.dev/cfgmap88.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-88
+          data:
+            player_initial_lives: "88"
+
+        packages/pkg.test.carvel.dev/cfgmap89.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-89
+          data:
+            player_initial_lives: "89"
+
+        packages/pkg.test.carvel.dev/cfgmap90.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-90
+          data:
+            player_initial_lives: "90"
+
+        packages/pkg.test.carvel.dev/cfgmap91.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-91
+          data:
+            player_initial_lives: "91"
+
+        packages/pkg.test.carvel.dev/cfgmap92.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-92
+          data:
+            player_initial_lives: "92"
+
+        packages/pkg.test.carvel.dev/cfgmap93.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-93
+          data:
+            player_initial_lives: "93"
+
+        packages/pkg.test.carvel.dev/cfgmap94.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-94
+          data:
+            player_initial_lives: "94"
+
+        packages/pkg.test.carvel.dev/cfgmap95.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-95
+          data:
+            player_initial_lives: "95"
+
+        packages/pkg.test.carvel.dev/cfgmap96.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-96
+          data:
+            player_initial_lives: "96"
+
+        packages/pkg.test.carvel.dev/cfgmap97.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-97
+          data:
+            player_initial_lives: "97"
+
+        packages/pkg.test.carvel.dev/cfgmap98.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-98
+          data:
+            player_initial_lives: "98"
+
+        packages/pkg.test.carvel.dev/cfgmap99.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-99
+          data:
+            player_initial_lives: "99"
+
+        packages/pkg.test.carvel.dev/cfgmap100.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-100
+          data:
+            player_initial_lives: "100"
+
+        packages/pkg.test.carvel.dev/cfgmap101.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-101
+          data:
+            player_initial_lives: "101"
+
+        packages/pkg.test.carvel.dev/cfgmap102.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-102
+          data:
+            player_initial_lives: "102"
+
+        packages/pkg.test.carvel.dev/cfgmap103.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-103
+          data:
+            player_initial_lives: "103"
+
+        packages/pkg.test.carvel.dev/cfgmap104.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-104
+          data:
+            player_initial_lives: "104"
+
+        packages/pkg.test.carvel.dev/cfgmap105.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-105
+          data:
+            player_initial_lives: "105"
+
+        packages/pkg.test.carvel.dev/cfgmap106.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-106
+          data:
+            player_initial_lives: "106"
+
+        packages/pkg.test.carvel.dev/cfgmap107.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-107
+          data:
+            player_initial_lives: "107"
+
+        packages/pkg.test.carvel.dev/cfgmap108.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-108
+          data:
+            player_initial_lives: "108"
+
+        packages/pkg.test.carvel.dev/cfgmap109.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-109
+          data:
+            player_initial_lives: "109"
+
+        packages/pkg.test.carvel.dev/cfgmap110.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-110
+          data:
+            player_initial_lives: "110"
+
+        packages/pkg.test.carvel.dev/cfgmap111.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-111
+          data:
+            player_initial_lives: "111"
+
+        packages/pkg.test.carvel.dev/cfgmap112.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-112
+          data:
+            player_initial_lives: "112"
+
+        packages/pkg.test.carvel.dev/cfgmap113.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-113
+          data:
+            player_initial_lives: "113"
+
+        packages/pkg.test.carvel.dev/cfgmap114.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-114
+          data:
+            player_initial_lives: "114"
+
+        packages/pkg.test.carvel.dev/cfgmap115.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-115
+          data:
+            player_initial_lives: "115"
+
+        packages/pkg.test.carvel.dev/cfgmap116.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-116
+          data:
+            player_initial_lives: "116"
+
+        packages/pkg.test.carvel.dev/cfgmap117.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-117
+          data:
+            player_initial_lives: "117"
+
+        packages/pkg.test.carvel.dev/cfgmap118.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-118
+          data:
+            player_initial_lives: "118"
+
+        packages/pkg.test.carvel.dev/cfgmap119.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-119
+          data:
+            player_initial_lives: "119"
+
+        packages/pkg.test.carvel.dev/cfgmap120.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-120
+          data:
+            player_initial_lives: "120"
+
+        packages/pkg.test.carvel.dev/cfgmap121.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-121
+          data:
+            player_initial_lives: "121"
+
+        packages/pkg.test.carvel.dev/cfgmap122.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-122
+          data:
+            player_initial_lives: "122"
+
+        packages/pkg.test.carvel.dev/cfgmap123.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-123
+          data:
+            player_initial_lives: "123"
+
+        packages/pkg.test.carvel.dev/cfgmap124.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-124
+          data:
+            player_initial_lives: "124"
+
+        packages/pkg.test.carvel.dev/cfgmap125.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-125
+          data:
+            player_initial_lives: "125"
+
+        packages/pkg.test.carvel.dev/cfgmap126.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-126
+          data:
+            player_initial_lives: "126"
+
+        packages/pkg.test.carvel.dev/cfgmap127.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-127
+          data:
+            player_initial_lives: "127"
+
+        packages/pkg.test.carvel.dev/cfgmap128.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-128
+          data:
+            player_initial_lives: "128"
+
+        packages/pkg.test.carvel.dev/cfgmap129.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-129
+          data:
+            player_initial_lives: "129"
+
+        packages/pkg.test.carvel.dev/cfgmap130.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-130
+          data:
+            player_initial_lives: "130"
+
+        packages/pkg.test.carvel.dev/cfgmap131.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-131
+          data:
+            player_initial_lives: "131"
+
+        packages/pkg.test.carvel.dev/cfgmap132.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-132
+          data:
+            player_initial_lives: "132"
+
+        packages/pkg.test.carvel.dev/cfgmap133.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-133
+          data:
+            player_initial_lives: "133"
+
+        packages/pkg.test.carvel.dev/cfgmap134.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-134
+          data:
+            player_initial_lives: "134"
+
+        packages/pkg.test.carvel.dev/cfgmap135.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-135
+          data:
+            player_initial_lives: "135"
+
+        packages/pkg.test.carvel.dev/cfgmap136.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-136
+          data:
+            player_initial_lives: "136"
+
+        packages/pkg.test.carvel.dev/cfgmap137.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-137
+          data:
+            player_initial_lives: "137"
+
+        packages/pkg.test.carvel.dev/cfgmap138.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-138
+          data:
+            player_initial_lives: "138"
+
+        packages/pkg.test.carvel.dev/cfgmap139.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-139
+          data:
+            player_initial_lives: "139"
+
+        packages/pkg.test.carvel.dev/cfgmap140.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-140
+          data:
+            player_initial_lives: "140"
+
+        packages/pkg.test.carvel.dev/cfgmap141.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-141
+          data:
+            player_initial_lives: "141"
+
+        packages/pkg.test.carvel.dev/cfgmap142.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-142
+          data:
+            player_initial_lives: "142"
+
+        packages/pkg.test.carvel.dev/cfgmap143.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-143
+          data:
+            player_initial_lives: "143"
+
+        packages/pkg.test.carvel.dev/cfgmap144.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-144
+          data:
+            player_initial_lives: "144"
+
+        packages/pkg.test.carvel.dev/cfgmap145.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-145
+          data:
+            player_initial_lives: "145"
+
+        packages/pkg.test.carvel.dev/cfgmap146.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-146
+          data:
+            player_initial_lives: "146"
+
+        packages/pkg.test.carvel.dev/cfgmap147.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-147
+          data:
+            player_initial_lives: "147"
+
+        packages/pkg.test.carvel.dev/cfgmap148.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-148
+          data:
+            player_initial_lives: "148"
+
+        packages/pkg.test.carvel.dev/cfgmap149.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-149
+          data:
+            player_initial_lives: "149"
+
+        packages/pkg.test.carvel.dev/cfgmap150.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-150
+          data:
+            player_initial_lives: "150"
+
+        packages/pkg.test.carvel.dev/cfgmap151.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-151
+          data:
+            player_initial_lives: "151"
+
+        packages/pkg.test.carvel.dev/cfgmap152.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-152
+          data:
+            player_initial_lives: "152"
+
+        packages/pkg.test.carvel.dev/cfgmap153.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-153
+          data:
+            player_initial_lives: "153"
+
+        packages/pkg.test.carvel.dev/cfgmap154.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-154
+          data:
+            player_initial_lives: "154"
+
+        packages/pkg.test.carvel.dev/cfgmap155.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-155
+          data:
+            player_initial_lives: "155"
+
+        packages/pkg.test.carvel.dev/cfgmap156.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-156
+          data:
+            player_initial_lives: "156"
+
+        packages/pkg.test.carvel.dev/cfgmap157.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-157
+          data:
+            player_initial_lives: "157"
+
+        packages/pkg.test.carvel.dev/cfgmap158.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-158
+          data:
+            player_initial_lives: "158"
+
+        packages/pkg.test.carvel.dev/cfgmap159.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-159
+          data:
+            player_initial_lives: "159"
+
+        packages/pkg.test.carvel.dev/cfgmap160.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-160
+          data:
+            player_initial_lives: "160"
+
+        packages/pkg.test.carvel.dev/cfgmap161.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-161
+          data:
+            player_initial_lives: "161"
+
+        packages/pkg.test.carvel.dev/cfgmap162.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-162
+          data:
+            player_initial_lives: "162"
+
+        packages/pkg.test.carvel.dev/cfgmap163.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-163
+          data:
+            player_initial_lives: "163"
+
+        packages/pkg.test.carvel.dev/cfgmap164.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-164
+          data:
+            player_initial_lives: "164"
+
+        packages/pkg.test.carvel.dev/cfgmap165.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-165
+          data:
+            player_initial_lives: "165"
+
+        packages/pkg.test.carvel.dev/cfgmap166.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-166
+          data:
+            player_initial_lives: "166"
+
+        packages/pkg.test.carvel.dev/cfgmap167.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-167
+          data:
+            player_initial_lives: "167"
+
+        packages/pkg.test.carvel.dev/cfgmap168.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-168
+          data:
+            player_initial_lives: "168"
+
+        packages/pkg.test.carvel.dev/cfgmap169.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-169
+          data:
+            player_initial_lives: "169"
+
+        packages/pkg.test.carvel.dev/cfgmap170.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-170
+          data:
+            player_initial_lives: "170"
+
+        packages/pkg.test.carvel.dev/cfgmap171.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-171
+          data:
+            player_initial_lives: "171"
+
+        packages/pkg.test.carvel.dev/cfgmap172.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-172
+          data:
+            player_initial_lives: "172"
+
+        packages/pkg.test.carvel.dev/cfgmap173.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-173
+          data:
+            player_initial_lives: "173"
+
+        packages/pkg.test.carvel.dev/cfgmap174.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-174
+          data:
+            player_initial_lives: "174"
+
+        packages/pkg.test.carvel.dev/cfgmap175.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-175
+          data:
+            player_initial_lives: "175"
+
+        packages/pkg.test.carvel.dev/cfgmap176.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-176
+          data:
+            player_initial_lives: "176"
+
+        packages/pkg.test.carvel.dev/cfgmap177.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-177
+          data:
+            player_initial_lives: "177"
+
+        packages/pkg.test.carvel.dev/cfgmap178.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-178
+          data:
+            player_initial_lives: "178"
+
+        packages/pkg.test.carvel.dev/cfgmap179.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-179
+          data:
+            player_initial_lives: "179"
+
+        packages/pkg.test.carvel.dev/cfgmap180.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-180
+          data:
+            player_initial_lives: "180"
+
+        packages/pkg.test.carvel.dev/cfgmap181.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-181
+          data:
+            player_initial_lives: "181"
+
+        packages/pkg.test.carvel.dev/cfgmap182.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-182
+          data:
+            player_initial_lives: "182"
+
+        packages/pkg.test.carvel.dev/cfgmap183.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-183
+          data:
+            player_initial_lives: "183"
+
+        packages/pkg.test.carvel.dev/cfgmap184.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-184
+          data:
+            player_initial_lives: "184"
+
+        packages/pkg.test.carvel.dev/cfgmap185.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-185
+          data:
+            player_initial_lives: "185"
+
+        packages/pkg.test.carvel.dev/cfgmap186.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-186
+          data:
+            player_initial_lives: "186"
+
+        packages/pkg.test.carvel.dev/cfgmap187.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-187
+          data:
+            player_initial_lives: "187"
+
+        packages/pkg.test.carvel.dev/cfgmap188.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-188
+          data:
+            player_initial_lives: "188"
+
+        packages/pkg.test.carvel.dev/cfgmap189.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-189
+          data:
+            player_initial_lives: "189"
+
+        packages/pkg.test.carvel.dev/cfgmap190.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-190
+          data:
+            player_initial_lives: "190"
+
+        packages/pkg.test.carvel.dev/cfgmap191.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-191
+          data:
+            player_initial_lives: "191"
+
+        packages/pkg.test.carvel.dev/cfgmap192.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-192
+          data:
+            player_initial_lives: "192"
+
+        packages/pkg.test.carvel.dev/cfgmap193.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-193
+          data:
+            player_initial_lives: "193"
+
+        packages/pkg.test.carvel.dev/cfgmap194.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-194
+          data:
+            player_initial_lives: "194"
+
+        packages/pkg.test.carvel.dev/cfgmap195.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-195
+          data:
+            player_initial_lives: "195"
+
+        packages/pkg.test.carvel.dev/cfgmap196.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-196
+          data:
+            player_initial_lives: "196"
+
+        packages/pkg.test.carvel.dev/cfgmap197.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-197
+          data:
+            player_initial_lives: "197"
+
+        packages/pkg.test.carvel.dev/cfgmap198.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-198
+          data:
+            player_initial_lives: "198"
+
+        packages/pkg.test.carvel.dev/cfgmap199.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-199
+          data:
+            player_initial_lives: "199"
+
+        packages/pkg.test.carvel.dev/cfgmap200.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-200
+          data:
+            player_initial_lives: "200"
+
+        packages/pkg.test.carvel.dev/cfgmap201.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-201
+          data:
+            player_initial_lives: "201"
+
+        packages/pkg.test.carvel.dev/cfgmap202.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-202
+          data:
+            player_initial_lives: "202"
+
+        packages/pkg.test.carvel.dev/cfgmap203.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-203
+          data:
+            player_initial_lives: "203"
+
+        packages/pkg.test.carvel.dev/cfgmap204.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-204
+          data:
+            player_initial_lives: "204"
+
+        packages/pkg.test.carvel.dev/cfgmap205.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-205
+          data:
+            player_initial_lives: "205"
+
+        packages/pkg.test.carvel.dev/cfgmap206.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-206
+          data:
+            player_initial_lives: "206"
+
+        packages/pkg.test.carvel.dev/cfgmap207.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-207
+          data:
+            player_initial_lives: "207"
+
+        packages/pkg.test.carvel.dev/cfgmap208.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-208
+          data:
+            player_initial_lives: "208"
+
+        packages/pkg.test.carvel.dev/cfgmap209.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-209
+          data:
+            player_initial_lives: "209"
+
+        packages/pkg.test.carvel.dev/cfgmap210.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-210
+          data:
+            player_initial_lives: "210"
+
+        packages/pkg.test.carvel.dev/cfgmap211.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-211
+          data:
+            player_initial_lives: "211"
+
+        packages/pkg.test.carvel.dev/cfgmap212.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-212
+          data:
+            player_initial_lives: "212"
+
+        packages/pkg.test.carvel.dev/cfgmap213.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-213
+          data:
+            player_initial_lives: "213"
+
+        packages/pkg.test.carvel.dev/cfgmap214.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-214
+          data:
+            player_initial_lives: "214"
+
+        packages/pkg.test.carvel.dev/cfgmap215.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-215
+          data:
+            player_initial_lives: "215"
+
+        packages/pkg.test.carvel.dev/cfgmap216.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-216
+          data:
+            player_initial_lives: "216"
+
+        packages/pkg.test.carvel.dev/cfgmap217.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-217
+          data:
+            player_initial_lives: "217"
+
+        packages/pkg.test.carvel.dev/cfgmap218.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-218
+          data:
+            player_initial_lives: "218"
+
+        packages/pkg.test.carvel.dev/cfgmap219.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-219
+          data:
+            player_initial_lives: "219"
+
+        packages/pkg.test.carvel.dev/cfgmap220.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-220
+          data:
+            player_initial_lives: "220"
+
+        packages/pkg.test.carvel.dev/cfgmap221.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-221
+          data:
+            player_initial_lives: "221"
+
+        packages/pkg.test.carvel.dev/cfgmap222.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-222
+          data:
+            player_initial_lives: "222"
+
+        packages/pkg.test.carvel.dev/cfgmap223.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-223
+          data:
+            player_initial_lives: "223"
+
+        packages/pkg.test.carvel.dev/cfgmap224.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-224
+          data:
+            player_initial_lives: "224"
+
+        packages/pkg.test.carvel.dev/cfgmap225.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-225
+          data:
+            player_initial_lives: "225"
+
+        packages/pkg.test.carvel.dev/cfgmap226.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-226
+          data:
+            player_initial_lives: "226"
+
+        packages/pkg.test.carvel.dev/cfgmap227.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-227
+          data:
+            player_initial_lives: "227"
+
+        packages/pkg.test.carvel.dev/cfgmap228.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-228
+          data:
+            player_initial_lives: "228"
+
+        packages/pkg.test.carvel.dev/cfgmap229.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-229
+          data:
+            player_initial_lives: "229"
+
+        packages/pkg.test.carvel.dev/cfgmap230.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-230
+          data:
+            player_initial_lives: "230"
+
+        packages/pkg.test.carvel.dev/cfgmap231.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-231
+          data:
+            player_initial_lives: "231"
+
+        packages/pkg.test.carvel.dev/cfgmap232.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-232
+          data:
+            player_initial_lives: "232"
+
+        packages/pkg.test.carvel.dev/cfgmap233.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-233
+          data:
+            player_initial_lives: "233"
+
+        packages/pkg.test.carvel.dev/cfgmap234.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-234
+          data:
+            player_initial_lives: "234"
+
+        packages/pkg.test.carvel.dev/cfgmap235.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-235
+          data:
+            player_initial_lives: "235"
+
+        packages/pkg.test.carvel.dev/cfgmap236.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-236
+          data:
+            player_initial_lives: "236"
+
+        packages/pkg.test.carvel.dev/cfgmap237.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-237
+          data:
+            player_initial_lives: "237"
+
+        packages/pkg.test.carvel.dev/cfgmap238.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-238
+          data:
+            player_initial_lives: "238"
+
+        packages/pkg.test.carvel.dev/cfgmap239.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-239
+          data:
+            player_initial_lives: "239"
+
+        packages/pkg.test.carvel.dev/cfgmap240.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-240
+          data:
+            player_initial_lives: "240"
+
+        packages/pkg.test.carvel.dev/cfgmap241.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-241
+          data:
+            player_initial_lives: "241"
+
+        packages/pkg.test.carvel.dev/cfgmap242.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-242
+          data:
+            player_initial_lives: "242"
+
+        packages/pkg.test.carvel.dev/cfgmap243.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-243
+          data:
+            player_initial_lives: "243"
+
+        packages/pkg.test.carvel.dev/cfgmap244.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-244
+          data:
+            player_initial_lives: "244"
+
+        packages/pkg.test.carvel.dev/cfgmap245.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-245
+          data:
+            player_initial_lives: "245"
+
+        packages/pkg.test.carvel.dev/cfgmap246.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-246
+          data:
+            player_initial_lives: "246"
+
+        packages/pkg.test.carvel.dev/cfgmap247.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-247
+          data:
+            player_initial_lives: "247"
+
+        packages/pkg.test.carvel.dev/cfgmap248.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-248
+          data:
+            player_initial_lives: "248"
+
+        packages/pkg.test.carvel.dev/cfgmap249.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-249
+          data:
+            player_initial_lives: "249"
+
+        packages/pkg.test.carvel.dev/cfgmap250.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-250
+          data:
+            player_initial_lives: "250"
+
+        packages/pkg.test.carvel.dev/cfgmap251.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-251
+          data:
+            player_initial_lives: "251"
+
+        packages/pkg.test.carvel.dev/cfgmap252.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-252
+          data:
+            player_initial_lives: "252"
+
+        packages/pkg.test.carvel.dev/cfgmap253.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-253
+          data:
+            player_initial_lives: "253"
+
+        packages/pkg.test.carvel.dev/cfgmap254.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-254
+          data:
+            player_initial_lives: "254"
+
+        packages/pkg.test.carvel.dev/cfgmap255.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-255
+          data:
+            player_initial_lives: "255"
+
+        packages/pkg.test.carvel.dev/cfgmap256.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-256
+          data:
+            player_initial_lives: "256"
+
+        packages/pkg.test.carvel.dev/cfgmap257.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-257
+          data:
+            player_initial_lives: "257"
+
+        packages/pkg.test.carvel.dev/cfgmap258.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-258
+          data:
+            player_initial_lives: "258"
+
+        packages/pkg.test.carvel.dev/cfgmap259.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-259
+          data:
+            player_initial_lives: "259"
+
+        packages/pkg.test.carvel.dev/cfgmap260.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-260
+          data:
+            player_initial_lives: "260"
+
+        packages/pkg.test.carvel.dev/cfgmap261.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-261
+          data:
+            player_initial_lives: "261"
+
+        packages/pkg.test.carvel.dev/cfgmap262.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-262
+          data:
+            player_initial_lives: "262"
+
+        packages/pkg.test.carvel.dev/cfgmap263.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-263
+          data:
+            player_initial_lives: "263"
+
+        packages/pkg.test.carvel.dev/cfgmap264.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-264
+          data:
+            player_initial_lives: "264"
+
+        packages/pkg.test.carvel.dev/cfgmap265.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-265
+          data:
+            player_initial_lives: "265"
+
+        packages/pkg.test.carvel.dev/cfgmap266.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-266
+          data:
+            player_initial_lives: "266"
+
+        packages/pkg.test.carvel.dev/cfgmap267.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-267
+          data:
+            player_initial_lives: "267"
+
+        packages/pkg.test.carvel.dev/cfgmap268.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-268
+          data:
+            player_initial_lives: "268"
+
+        packages/pkg.test.carvel.dev/cfgmap269.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-269
+          data:
+            player_initial_lives: "269"
+
+        packages/pkg.test.carvel.dev/cfgmap270.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-270
+          data:
+            player_initial_lives: "270"
+
+        packages/pkg.test.carvel.dev/cfgmap271.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-271
+          data:
+            player_initial_lives: "271"
+
+        packages/pkg.test.carvel.dev/cfgmap272.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-272
+          data:
+            player_initial_lives: "272"
+
+        packages/pkg.test.carvel.dev/cfgmap273.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-273
+          data:
+            player_initial_lives: "273"
+
+        packages/pkg.test.carvel.dev/cfgmap274.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-274
+          data:
+            player_initial_lives: "274"
+
+        packages/pkg.test.carvel.dev/cfgmap275.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-275
+          data:
+            player_initial_lives: "275"
+
+        packages/pkg.test.carvel.dev/cfgmap276.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-276
+          data:
+            player_initial_lives: "276"
+
+        packages/pkg.test.carvel.dev/cfgmap277.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-277
+          data:
+            player_initial_lives: "277"
+
+        packages/pkg.test.carvel.dev/cfgmap278.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-278
+          data:
+            player_initial_lives: "278"
+
+        packages/pkg.test.carvel.dev/cfgmap279.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-279
+          data:
+            player_initial_lives: "279"
+
+        packages/pkg.test.carvel.dev/cfgmap280.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-280
+          data:
+            player_initial_lives: "280"
+
+        packages/pkg.test.carvel.dev/cfgmap281.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-281
+          data:
+            player_initial_lives: "281"
+
+        packages/pkg.test.carvel.dev/cfgmap282.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-282
+          data:
+            player_initial_lives: "282"
+
+        packages/pkg.test.carvel.dev/cfgmap283.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-283
+          data:
+            player_initial_lives: "283"
+
+        packages/pkg.test.carvel.dev/cfgmap284.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-284
+          data:
+            player_initial_lives: "284"
+
+        packages/pkg.test.carvel.dev/cfgmap285.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-285
+          data:
+            player_initial_lives: "285"
+
+        packages/pkg.test.carvel.dev/cfgmap286.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-286
+          data:
+            player_initial_lives: "286"
+
+        packages/pkg.test.carvel.dev/cfgmap287.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-287
+          data:
+            player_initial_lives: "287"
+
+        packages/pkg.test.carvel.dev/cfgmap288.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-288
+          data:
+            player_initial_lives: "288"
+
+        packages/pkg.test.carvel.dev/cfgmap289.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-289
+          data:
+            player_initial_lives: "289"
+
+        packages/pkg.test.carvel.dev/cfgmap290.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-290
+          data:
+            player_initial_lives: "290"
+
+        packages/pkg.test.carvel.dev/cfgmap291.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-291
+          data:
+            player_initial_lives: "291"
+
+        packages/pkg.test.carvel.dev/cfgmap292.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-292
+          data:
+            player_initial_lives: "292"
+
+        packages/pkg.test.carvel.dev/cfgmap293.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-293
+          data:
+            player_initial_lives: "293"
+
+        packages/pkg.test.carvel.dev/cfgmap294.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-294
+          data:
+            player_initial_lives: "294"
+
+        packages/pkg.test.carvel.dev/cfgmap295.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-295
+          data:
+            player_initial_lives: "295"
+
+        packages/pkg.test.carvel.dev/cfgmap296.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-296
+          data:
+            player_initial_lives: "296"
+
+        packages/pkg.test.carvel.dev/cfgmap297.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-297
+          data:
+            player_initial_lives: "297"
+
+        packages/pkg.test.carvel.dev/cfgmap298.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-298
+          data:
+            player_initial_lives: "298"
+
+        packages/pkg.test.carvel.dev/cfgmap299.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-299
+          data:
+            player_initial_lives: "299"
+
+        packages/pkg.test.carvel.dev/cfgmap300.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-300
+          data:
+            player_initial_lives: "300"
+
+        packages/pkg.test.carvel.dev/cfgmap301.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-301
+          data:
+            player_initial_lives: "301"
+
+        packages/pkg.test.carvel.dev/cfgmap302.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-302
+          data:
+            player_initial_lives: "302"
+
+        packages/pkg.test.carvel.dev/cfgmap303.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-303
+          data:
+            player_initial_lives: "303"
+
+        packages/pkg.test.carvel.dev/cfgmap304.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-304
+          data:
+            player_initial_lives: "304"
+
+        packages/pkg.test.carvel.dev/cfgmap305.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-305
+          data:
+            player_initial_lives: "305"
+
+        packages/pkg.test.carvel.dev/cfgmap306.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-306
+          data:
+            player_initial_lives: "306"
+
+        packages/pkg.test.carvel.dev/cfgmap307.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-307
+          data:
+            player_initial_lives: "307"
+
+        packages/pkg.test.carvel.dev/cfgmap308.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-308
+          data:
+            player_initial_lives: "308"
+
+        packages/pkg.test.carvel.dev/cfgmap309.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-309
+          data:
+            player_initial_lives: "309"
+
+        packages/pkg.test.carvel.dev/cfgmap310.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-310
+          data:
+            player_initial_lives: "310"
+
+        packages/pkg.test.carvel.dev/cfgmap311.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-311
+          data:
+            player_initial_lives: "311"
+
+        packages/pkg.test.carvel.dev/cfgmap312.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-312
+          data:
+            player_initial_lives: "312"
+
+        packages/pkg.test.carvel.dev/cfgmap313.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-313
+          data:
+            player_initial_lives: "313"
+
+        packages/pkg.test.carvel.dev/cfgmap314.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-314
+          data:
+            player_initial_lives: "314"
+
+        packages/pkg.test.carvel.dev/cfgmap315.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-315
+          data:
+            player_initial_lives: "315"
+
+        packages/pkg.test.carvel.dev/cfgmap316.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-316
+          data:
+            player_initial_lives: "316"
+
+        packages/pkg.test.carvel.dev/cfgmap317.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-317
+          data:
+            player_initial_lives: "317"
+
+        packages/pkg.test.carvel.dev/cfgmap318.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-318
+          data:
+            player_initial_lives: "318"
+
+        packages/pkg.test.carvel.dev/cfgmap319.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-319
+          data:
+            player_initial_lives: "319"
+
+        packages/pkg.test.carvel.dev/cfgmap320.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-320
+          data:
+            player_initial_lives: "320"
+
+        packages/pkg.test.carvel.dev/cfgmap321.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-321
+          data:
+            player_initial_lives: "321"
+
+        packages/pkg.test.carvel.dev/cfgmap322.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-322
+          data:
+            player_initial_lives: "322"
+
+        packages/pkg.test.carvel.dev/cfgmap323.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-323
+          data:
+            player_initial_lives: "323"
+
+        packages/pkg.test.carvel.dev/cfgmap324.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-324
+          data:
+            player_initial_lives: "324"
+
+        packages/pkg.test.carvel.dev/cfgmap325.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-325
+          data:
+            player_initial_lives: "325"
+
+        packages/pkg.test.carvel.dev/cfgmap326.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-326
+          data:
+            player_initial_lives: "326"
+
+        packages/pkg.test.carvel.dev/cfgmap327.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-327
+          data:
+            player_initial_lives: "327"
+
+        packages/pkg.test.carvel.dev/cfgmap328.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-328
+          data:
+            player_initial_lives: "328"
+
+        packages/pkg.test.carvel.dev/cfgmap329.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-329
+          data:
+            player_initial_lives: "329"
+
+        packages/pkg.test.carvel.dev/cfgmap330.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-330
+          data:
+            player_initial_lives: "330"
+
+        packages/pkg.test.carvel.dev/cfgmap331.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-331
+          data:
+            player_initial_lives: "331"
+
+        packages/pkg.test.carvel.dev/cfgmap332.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-332
+          data:
+            player_initial_lives: "332"
+
+        packages/pkg.test.carvel.dev/cfgmap333.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-333
+          data:
+            player_initial_lives: "333"
+
+        packages/pkg.test.carvel.dev/cfgmap334.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-334
+          data:
+            player_initial_lives: "334"
+
+        packages/pkg.test.carvel.dev/cfgmap335.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-335
+          data:
+            player_initial_lives: "335"
+
+        packages/pkg.test.carvel.dev/cfgmap336.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-336
+          data:
+            player_initial_lives: "336"
+
+        packages/pkg.test.carvel.dev/cfgmap337.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-337
+          data:
+            player_initial_lives: "337"
+
+        packages/pkg.test.carvel.dev/cfgmap338.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-338
+          data:
+            player_initial_lives: "338"
+
+        packages/pkg.test.carvel.dev/cfgmap339.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-339
+          data:
+            player_initial_lives: "339"
+
+        packages/pkg.test.carvel.dev/cfgmap340.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-340
+          data:
+            player_initial_lives: "340"
+
+        packages/pkg.test.carvel.dev/cfgmap341.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-341
+          data:
+            player_initial_lives: "341"
+
+        packages/pkg.test.carvel.dev/cfgmap342.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-342
+          data:
+            player_initial_lives: "342"
+
+        packages/pkg.test.carvel.dev/cfgmap343.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-343
+          data:
+            player_initial_lives: "343"
+
+        packages/pkg.test.carvel.dev/cfgmap344.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-344
+          data:
+            player_initial_lives: "344"
+
+        packages/pkg.test.carvel.dev/cfgmap345.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-345
+          data:
+            player_initial_lives: "345"
+
+        packages/pkg.test.carvel.dev/cfgmap346.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-346
+          data:
+            player_initial_lives: "346"
+
+        packages/pkg.test.carvel.dev/cfgmap347.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-347
+          data:
+            player_initial_lives: "347"
+
+        packages/pkg.test.carvel.dev/cfgmap348.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-348
+          data:
+            player_initial_lives: "348"
+
+        packages/pkg.test.carvel.dev/cfgmap349.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-349
+          data:
+            player_initial_lives: "349"
+
+        packages/pkg.test.carvel.dev/cfgmap350.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-350
+          data:
+            player_initial_lives: "350"
+
+        packages/pkg.test.carvel.dev/cfgmap351.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-351
+          data:
+            player_initial_lives: "351"
+
+        packages/pkg.test.carvel.dev/cfgmap352.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-352
+          data:
+            player_initial_lives: "352"
+
+        packages/pkg.test.carvel.dev/cfgmap353.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-353
+          data:
+            player_initial_lives: "353"
+
+        packages/pkg.test.carvel.dev/cfgmap354.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-354
+          data:
+            player_initial_lives: "354"
+
+        packages/pkg.test.carvel.dev/cfgmap355.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-355
+          data:
+            player_initial_lives: "355"
+
+        packages/pkg.test.carvel.dev/cfgmap356.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-356
+          data:
+            player_initial_lives: "356"
+
+        packages/pkg.test.carvel.dev/cfgmap357.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-357
+          data:
+            player_initial_lives: "357"
+
+        packages/pkg.test.carvel.dev/cfgmap358.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-358
+          data:
+            player_initial_lives: "358"
+
+        packages/pkg.test.carvel.dev/cfgmap359.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-359
+          data:
+            player_initial_lives: "359"
+
+        packages/pkg.test.carvel.dev/cfgmap360.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-360
+          data:
+            player_initial_lives: "360"
+
+        packages/pkg.test.carvel.dev/cfgmap361.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-361
+          data:
+            player_initial_lives: "361"
+
+        packages/pkg.test.carvel.dev/cfgmap362.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-362
+          data:
+            player_initial_lives: "362"
+
+        packages/pkg.test.carvel.dev/cfgmap363.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-363
+          data:
+            player_initial_lives: "363"
+
+        packages/pkg.test.carvel.dev/cfgmap364.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-364
+          data:
+            player_initial_lives: "364"
+
+        packages/pkg.test.carvel.dev/cfgmap365.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-365
+          data:
+            player_initial_lives: "365"
+
+        packages/pkg.test.carvel.dev/cfgmap366.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-366
+          data:
+            player_initial_lives: "366"
+
+        packages/pkg.test.carvel.dev/cfgmap367.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-367
+          data:
+            player_initial_lives: "367"
+
+        packages/pkg.test.carvel.dev/cfgmap368.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-368
+          data:
+            player_initial_lives: "368"
+
+        packages/pkg.test.carvel.dev/cfgmap369.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-369
+          data:
+            player_initial_lives: "369"
+
+        packages/pkg.test.carvel.dev/cfgmap370.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-370
+          data:
+            player_initial_lives: "370"
+
+        packages/pkg.test.carvel.dev/cfgmap371.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-371
+          data:
+            player_initial_lives: "371"
+
+        packages/pkg.test.carvel.dev/cfgmap372.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-372
+          data:
+            player_initial_lives: "372"
+
+        packages/pkg.test.carvel.dev/cfgmap373.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-373
+          data:
+            player_initial_lives: "373"
+
+        packages/pkg.test.carvel.dev/cfgmap374.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-374
+          data:
+            player_initial_lives: "374"
+
+        packages/pkg.test.carvel.dev/cfgmap375.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-375
+          data:
+            player_initial_lives: "375"
+
+        packages/pkg.test.carvel.dev/cfgmap376.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-376
+          data:
+            player_initial_lives: "376"
+
+        packages/pkg.test.carvel.dev/cfgmap377.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-377
+          data:
+            player_initial_lives: "377"
+
+        packages/pkg.test.carvel.dev/cfgmap378.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-378
+          data:
+            player_initial_lives: "378"
+
+        packages/pkg.test.carvel.dev/cfgmap379.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-379
+          data:
+            player_initial_lives: "379"
+
+        packages/pkg.test.carvel.dev/cfgmap380.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-380
+          data:
+            player_initial_lives: "380"
+
+        packages/pkg.test.carvel.dev/cfgmap381.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-381
+          data:
+            player_initial_lives: "381"
+
+        packages/pkg.test.carvel.dev/cfgmap382.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-382
+          data:
+            player_initial_lives: "382"
+
+        packages/pkg.test.carvel.dev/cfgmap383.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-383
+          data:
+            player_initial_lives: "383"
+
+        packages/pkg.test.carvel.dev/cfgmap384.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-384
+          data:
+            player_initial_lives: "384"
+
+        packages/pkg.test.carvel.dev/cfgmap385.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-385
+          data:
+            player_initial_lives: "385"
+
+        packages/pkg.test.carvel.dev/cfgmap386.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-386
+          data:
+            player_initial_lives: "386"
+
+        packages/pkg.test.carvel.dev/cfgmap387.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-387
+          data:
+            player_initial_lives: "387"
+
+        packages/pkg.test.carvel.dev/cfgmap388.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-388
+          data:
+            player_initial_lives: "388"
+
+        packages/pkg.test.carvel.dev/cfgmap389.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-389
+          data:
+            player_initial_lives: "389"
+
+        packages/pkg.test.carvel.dev/cfgmap390.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-390
+          data:
+            player_initial_lives: "390"
+
+        packages/pkg.test.carvel.dev/cfgmap391.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-391
+          data:
+            player_initial_lives: "391"
+
+        packages/pkg.test.carvel.dev/cfgmap392.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-392
+          data:
+            player_initial_lives: "392"
+
+        packages/pkg.test.carvel.dev/cfgmap393.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-393
+          data:
+            player_initial_lives: "393"
+
+        packages/pkg.test.carvel.dev/cfgmap394.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-394
+          data:
+            player_initial_lives: "394"
+
+        packages/pkg.test.carvel.dev/cfgmap395.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-395
+          data:
+            player_initial_lives: "395"
+
+        packages/pkg.test.carvel.dev/cfgmap396.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-396
+          data:
+            player_initial_lives: "396"
+
+        packages/pkg.test.carvel.dev/cfgmap397.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-397
+          data:
+            player_initial_lives: "397"
+
+        packages/pkg.test.carvel.dev/cfgmap398.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-398
+          data:
+            player_initial_lives: "398"
+
+        packages/pkg.test.carvel.dev/cfgmap399.test.carvel.dev.0.0.1.yml: |
+          ---
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: trivial-map-399
+          data:
+            player_initial_lives: "399"

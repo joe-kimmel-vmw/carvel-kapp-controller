@@ -1,0 +1,33 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: pkg0.test.carvel.dev.0.0.0
+spec:
+  refName: pkg0.test.carvel.dev
+  version: 0.0.0
+  template:
+    spec: {}
+
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: pkg0.test.carvel.dev.0.1.0
+spec:
+  refName: pkg0.test.carvel.dev
+  version: 0.1.0
+  template:
+    spec: {}
+
+---
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: pkg1.test.carvel.dev.0.0.0
+spec:
+  refName: pkg1.test.carvel.dev
+  version: 0.0.0
+  template:
+    spec: {}
+
+---

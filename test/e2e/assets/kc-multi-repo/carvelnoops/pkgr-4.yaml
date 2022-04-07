@@ -1,0 +1,44 @@
+
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: minimal-repo-4.tanzu.carvel.dev
+  namespace: default
+  annotations:
+    kapp.k14s.io/disable-original: ""
+spec:
+  fetch:
+    inline:
+      paths:
+
+        packages/pkg.test.carvel.dev/noop0.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo1"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop1.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo2"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop2.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo3"
+            namespace: "default"
+
+        packages/pkg.test.carvel.dev/noop3.test.carvel.dev.0.0.1.yml: |
+          ---
+          kind: CarvelNoop
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          metadata:
+            name: "foo4"
+            namespace: "default"

@@ -1,0 +1,7 @@
+kind: CarvelNoop
+apiVersion: data.packaging.carvel.dev/v1alpha1
+metadata:
+  annotations:
+     "kapp.k14s.io/disable-original": ""
+  name: "foo"
+  namespace: "default"
