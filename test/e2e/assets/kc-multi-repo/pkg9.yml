@@ -1,0 +1,7 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: pkg9.test.carvel.dev.0.0.0
+  annotations:
+    kapp.k14s.io/create-strategy: "fallback-on-update"
+spec: {"refName":"pkg9.test.carvel.dev","releasedAt":null,"template":{"spec":{}},"valuesSchema":{"openAPIv3":null},"version":"0.0.0"}
