@@ -1,0 +1,134 @@
+
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: minimal-repo-10.tanzu.carvel.dev
+  # Adds it to global namespace (as defined by kapp-controller)
+  # which makes packages available in all namespaces
+  namespace: kapp-controller-packaging-global
+  annotations:
+    kapp.k14s.io/disable-original: ""
+spec:
+  fetch:
+    inline:
+      paths:
+
+        packages/pkg.test.carvel.dev/pkg0.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg0.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg0.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg1.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg1.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg1.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg2.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg2.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg2.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg3.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg3.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg3.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg4.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg4.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg4.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg5.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg5.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg5.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg6.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg6.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg6.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg7.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg7.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg7.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg8.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg8.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg8.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}
+
+        packages/pkg.test.carvel.dev/pkg9.test.carvel.dev.0.0.0.yml: |
+          ---
+          apiVersion: data.packaging.carvel.dev/v1alpha1
+          kind: Package
+          metadata:
+            name: pkg9.test.carvel.dev.0.0.0
+          spec:
+            refName: pkg9.test.carvel.dev
+            version: 0.0.0
+            template:
+              spec: {}

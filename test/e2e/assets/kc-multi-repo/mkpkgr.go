@@ -11,10 +11,10 @@ import (
 )
 
 func main() {
-	numVersions := flag.Int("numVers", 2, "The number of minor versions for each Package (total packages will be numPkgs x numVers)")
+	numVersions := flag.Int("numVers", 1, "The number of minor versions for each Package (total packages will be numPkgs x numVers)")
 	flag.Parse()
 
-	numPkgs := []int{100, 500}
+	numPkgs := []int{100, 200, 500, 1000}
 	deployTimes := []string{}
 	deleteTimes := []string{}
 	for _, numPackages := range numPkgs {
