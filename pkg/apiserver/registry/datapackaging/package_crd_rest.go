@@ -82,12 +82,12 @@ func (r *PackageCRDREST) Create(ctx context.Context, obj runtime.Object, createV
 // namespaces collection object that hides impl, and then PackageCRDRest and PKGMetadata use that object...
 // "the cache is effectively done for you by using the client from the controller runtime. - pkgcrdrest class takes a kc client and core client - see if the core client is used for anything else
 func (r *PackageCRDREST) shouldFetchGlobal(ctx context.Context, namespace string) bool {
-		ns, err := r.nsClient.CoreV1().Namespaces().Get(ctx, namespace, metav1.GetOptions{})
-		if err != nil {
-			return false
-		}
-		_, exclude := ns.ObjectMeta.Annotations[excludeGlobalPackagesAnn]
-		return namespace != r.globalNamespace && namespace != "" && !exclude
+	ns, err := r.nsClient.CoreV1().Namespaces().Get(ctx, namespace, metav1.GetOptions{})
+	if err != nil {
+		return false
+	}
+	_, exclude := ns.ObjectMeta.Annotations[excludeGlobalPackagesAnn]
+	return namespace != r.globalNamespace && namespace != "" && !exclude
 }
 
 func (r *PackageCRDREST) Get(ctx context.Context, name string, options *metav1.GetOptions) (runtime.Object, error) {
