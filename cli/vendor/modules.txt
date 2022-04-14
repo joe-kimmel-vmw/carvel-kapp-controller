@@ -210,8 +210,10 @@ github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/apis/datapackaging
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/apis/datapackaging/install
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/apis/datapackaging/v1alpha1
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/client/clientset/versioned
+github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/client/clientset/versioned/fake
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/client/clientset/versioned/scheme
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/client/clientset/versioned/typed/datapackaging/v1alpha1
+github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/client/clientset/versioned/typed/datapackaging/v1alpha1/fake
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/app
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/client/clientset/versioned
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/client/clientset/versioned/fake
@@ -239,6 +241,7 @@ github.com/vmware-tanzu/carvel-kapp-controller/pkg/exec
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/fetch
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/memdir
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/metrics
+github.com/vmware-tanzu/carvel-kapp-controller/pkg/packageinstall
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/reconciler
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/reftracker
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/template
@@ -419,6 +422,7 @@ k8s.io/apiextensions-apiserver/pkg/apis/apiextensions
 k8s.io/apiextensions-apiserver/pkg/apiserver/schema
 # k8s.io/apimachinery v0.22.4
 ## explicit; go 1.16
+k8s.io/apimachinery/pkg/api/equality
 k8s.io/apimachinery/pkg/api/errors
 k8s.io/apimachinery/pkg/api/meta
 k8s.io/apimachinery/pkg/api/resource
@@ -623,6 +627,7 @@ sigs.k8s.io/controller-runtime/pkg/cluster
 sigs.k8s.io/controller-runtime/pkg/config
 sigs.k8s.io/controller-runtime/pkg/config/v1alpha1
 sigs.k8s.io/controller-runtime/pkg/controller
+sigs.k8s.io/controller-runtime/pkg/controller/controllerutil
 sigs.k8s.io/controller-runtime/pkg/event
 sigs.k8s.io/controller-runtime/pkg/handler
 sigs.k8s.io/controller-runtime/pkg/healthz
