@@ -76,7 +76,6 @@ func (s *Status) IsPackageRevoked() bool {
 
 func (s *Status) SetReconciling(meta metav1.ObjectMeta) {
 	s.markObservedLatest(meta)
-	s.removeAllConditions()
 
 	s.S.Conditions = append(s.S.Conditions, kcv1alpha1.Condition{
 		Type:   kcv1alpha1.Reconciling,
@@ -91,7 +90,6 @@ func (s *Status) SetReconciling(meta metav1.ObjectMeta) {
 
 func (s *Status) SetDeleting(meta metav1.ObjectMeta) {
 	s.markObservedLatest(meta)
-	s.removeAllConditions()
 
 	s.S.Conditions = append(s.S.Conditions, kcv1alpha1.Condition{
 		Type:   kcv1alpha1.Deleting,
@@ -104,8 +102,6 @@ func (s *Status) SetDeleting(meta metav1.ObjectMeta) {
 }
 
 func (s *Status) SetReconcileCompleted(err error) {
-	s.removeAllConditions()
-
 	if err != nil {
 		s.S.Conditions = append(s.S.Conditions, kcv1alpha1.Condition{
 			Type:    kcv1alpha1.ReconcileFailed,
@@ -130,7 +126,7 @@ func (s *Status) SetReconcileCompleted(err error) {
 func (s *Status) SetPackageRevoked(meta metav1.ObjectMeta, reason string) {
 	s.markObservedLatest(meta)
 
-	s.S.Conditions = append(s.S.Conditions, kcv1alpha1.AppCondition{
+	s.S.Conditions = append(s.S.Conditions, kcv1alpha1.Condition{
 		Type:   kcv1alpha1.PackageRevoked,
 		Status: corev1.ConditionTrue,
 		Reason: reason,
@@ -139,14 +135,7 @@ func (s *Status) SetPackageRevoked(meta metav1.ObjectMeta, reason string) {
 	s.UpdateFunc(s.S)
 }
 
-// UnsetPackageRevoked removes the PackageRevoked status from the conditions
-func (s *Status) UnsetPackageRevoked(meta metav1.ObjectMeta) {
-	s.removeConditionByType(kcv1alpha1.PackageRevoked)
-}
-
 func (s *Status) SetDeleteCompleted(err error) {
-	s.removeAllConditions()
-
 	if err != nil {
 		s.S.Conditions = append(s.S.Conditions, kcv1alpha1.Condition{
 			Type:    kcv1alpha1.DeleteFailed,
@@ -175,17 +164,8 @@ func (s *Status) markObservedLatest(meta metav1.ObjectMeta) {
 	s.S.ObservedGeneration = meta.Generation
 }
 
-func (s *Status) removeAllConditions() {
+func (s *Status) RemoveAllConditions() {
 	s.S.Conditions = nil
-}
-
-func (s *Status) removeConditionByType(c kcv1alpha1.AppConditionType) {
-	for i, cond := range s.S.Conditions {
-		if cond.Type == c {
-			s.S.Conditions = append(s.S.Conditions[:i], s.S.Conditions[i+1:]...)
-			break
-		}
-	}
 }
 
 func (s *Status) SetUsefulErrorMessage(errMsg string) {

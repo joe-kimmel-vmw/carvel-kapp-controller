@@ -100,7 +100,7 @@ type PackageSpec struct {
 	// Revoked indicates that this package is no longer recommended for use
 	// This package likely contains unsupported software, a CVE or a critical bug.
 	// +optional
-	Revoked Revoked `json:"revoked,omitempty"`
+	Revoked *Revoked `json:"revoked,omitempty"`
 }
 
 type PackageMetadataSpec struct {
@@ -145,7 +145,8 @@ type IncludedSoftware struct {
 	Description string `json:"description,omitempty" protobuf:"bytes,3,opt,name=description"`
 }
 
-// Revoked contains the reason for the package revokation
+// Revoked contains the package revokation details
 type Revoked struct {
 	Reason string `json:"reason,omitempty" protobuf:"bytes,1,opt,name=reason"`
+	Date   string `json:"date,omitempty" protobuf:"bytes,2,opt,name=date"`
 }

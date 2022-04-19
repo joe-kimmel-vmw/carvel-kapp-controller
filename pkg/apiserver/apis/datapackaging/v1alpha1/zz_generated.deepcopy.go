@@ -225,7 +225,11 @@ func (in *PackageSpec) DeepCopyInto(out *PackageSpec) {
 		*out = make([]IncludedSoftware, len(*in))
 		copy(*out, *in)
 	}
-	out.Revoked = in.Revoked
+	if in.Revoked != nil {
+		in, out := &in.Revoked, &out.Revoked
+		*out = new(Revoked)
+		**out = **in
+	}
 	return
 }
 

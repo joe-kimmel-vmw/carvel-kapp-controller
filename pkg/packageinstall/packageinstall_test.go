@@ -479,7 +479,7 @@ func Test_CreatePackage_RevokedStatus(t *testing.T) {
 	tests := []struct {
 		name               string
 		pkg                *datapkgingv1alpha1.Package
-		expectedConditions []v1alpha1.AppCondition
+		expectedConditions []v1alpha1.Condition
 	}{
 		{
 			name: "revoked status is shown",
@@ -490,7 +490,7 @@ func Test_CreatePackage_RevokedStatus(t *testing.T) {
 				Spec: datapkgingv1alpha1.PackageSpec{
 					RefName: "expected-pkg",
 					Version: "1.0.0",
-					Revoked: datapkgingv1alpha1.Revoked{
+					Revoked: &datapkgingv1alpha1.Revoked{
 						Reason: expectedReason,
 					},
 					Template: datapkgingv1alpha1.AppTemplateSpec{
@@ -502,7 +502,7 @@ func Test_CreatePackage_RevokedStatus(t *testing.T) {
 					},
 				},
 			},
-			expectedConditions: []v1alpha1.AppCondition{{
+			expectedConditions: []v1alpha1.Condition{{
 				Type:   v1alpha1.Reconciling,
 				Status: corev1.ConditionTrue,
 			}, {
@@ -529,7 +529,7 @@ func Test_CreatePackage_RevokedStatus(t *testing.T) {
 					},
 				},
 			},
-			expectedConditions: []v1alpha1.AppCondition{{
+			expectedConditions: []v1alpha1.Condition{{
 				Type:   v1alpha1.Reconciling,
 				Status: corev1.ConditionTrue,
 			}},

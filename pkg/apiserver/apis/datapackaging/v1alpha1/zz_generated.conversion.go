@@ -342,9 +342,7 @@ func autoConvert_v1alpha1_PackageSpec_To_datapackaging_PackageSpec(in *PackageSp
 		return err
 	}
 	out.IncludedSoftware = *(*[]datapackaging.IncludedSoftware)(unsafe.Pointer(&in.IncludedSoftware))
-	if err := Convert_v1alpha1_Revoked_To_datapackaging_Revoked(&in.Revoked, &out.Revoked, s); err != nil {
-		return err
-	}
+	out.Revoked = (*datapackaging.Revoked)(unsafe.Pointer(in.Revoked))
 	return nil
 }
 
@@ -367,9 +365,7 @@ func autoConvert_datapackaging_PackageSpec_To_v1alpha1_PackageSpec(in *datapacka
 		return err
 	}
 	out.IncludedSoftware = *(*[]IncludedSoftware)(unsafe.Pointer(&in.IncludedSoftware))
-	if err := Convert_datapackaging_Revoked_To_v1alpha1_Revoked(&in.Revoked, &out.Revoked, s); err != nil {
-		return err
-	}
+	out.Revoked = (*Revoked)(unsafe.Pointer(in.Revoked))
 	return nil
 }
 
@@ -380,6 +376,7 @@ func Convert_datapackaging_PackageSpec_To_v1alpha1_PackageSpec(in *datapackaging
 
 func autoConvert_v1alpha1_Revoked_To_datapackaging_Revoked(in *Revoked, out *datapackaging.Revoked, s conversion.Scope) error {
 	out.Reason = in.Reason
+	out.Date = in.Date
 	return nil
 }
 
@@ -390,6 +387,7 @@ func Convert_v1alpha1_Revoked_To_datapackaging_Revoked(in *Revoked, out *datapac
 
 func autoConvert_datapackaging_Revoked_To_v1alpha1_Revoked(in *datapackaging.Revoked, out *Revoked, s conversion.Scope) error {
 	out.Reason = in.Reason
+	out.Date = in.Date
 	return nil
 }
 

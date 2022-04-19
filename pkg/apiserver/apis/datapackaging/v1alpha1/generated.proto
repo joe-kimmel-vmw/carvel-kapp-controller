@@ -122,9 +122,11 @@ message PackageSpec {
   optional Revoked revoked = 10;
 }
 
-// Revoked contains the reason for the package revokation
+// Revoked contains the package revokation details
 message Revoked {
   optional string reason = 1;
+
+  optional string date = 2;
 }
 
 message ValuesSchema {
