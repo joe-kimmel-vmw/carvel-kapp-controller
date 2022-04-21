@@ -22,6 +22,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/equality"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/util/validation/field"
 	"k8s.io/client-go/kubernetes"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
@@ -92,6 +93,15 @@ func (pi *PackageInstallCR) reconcile(modelStatus *reconciler.Status) (reconcile
 
 	modelStatus.SetReconciling(pi.model.ObjectMeta)
 
+	var fieldErrors field.ErrorList
+	for i, value := range pi.model.Spec.Values {
+		if value.SecretRef == nil {
+			fieldErrors = append(fieldErrors, field.Required(field.NewPath("spec", "values").Index(i).Child("secretRef"), ""))
+		}
+	}
+	if len(fieldErrors) > 0 {
+		return reconcile.Result{}, fmt.Errorf("Invalid fields: %w", fieldErrors.ToAggregate())
+	}
 	pkg, err := pi.referencedPkgVersion()
 	if err != nil {
 		return reconcile.Result{Requeue: true}, err
@@ -112,7 +122,8 @@ func (pi *PackageInstallCR) reconcile(modelStatus *reconciler.Status) (reconcile
 
 		if matchedVers.Len() == 0 {
 			errMsg := fmt.Sprintf(
-				"Stopped installing matched version '%s' since last attempted version '%s' is higher",
+				"Stopped installing matched version '%s' since last attempted version '%s' is higher."+
+					"\nhint: Add annotation packaging.carvel.dev/downgradable: \"\" to PackageInstall to proceed with downgrade",
 				pkg.Spec.Version, pi.model.Status.LastAttemptedVersion)
 			modelStatus.SetUsefulErrorMessage(errMsg)
 			modelStatus.SetReconcileCompleted(fmt.Errorf("Error (see .status.usefulErrorMessage for details)"))
@@ -206,6 +217,16 @@ func (pi *PackageInstallCR) referencedPkgVersion() (datapkgingv1alpha1.Package, 
 		if pkg.Spec.RefName == pi.model.Spec.PackageRef.RefName {
 			versionStrs = append(versionStrs, pkg.Spec.Version)
 			versionToPkg[pkg.Spec.Version] = pkg
+		}
+	}
+
+	// If constraint is a single specified version, then we
+	// do not want to force user to manually set prereleases={}
+	if len(semverConfig.Constraints) > 0 && semverConfig.Prereleases == nil {
+		// Will error if it's not a single version
+		singleVer, err := versions.NewSemver(semverConfig.Constraints)
+		if err == nil && len(singleVer.Pre) > 0 {
+			semverConfig.Prereleases = &verv1alpha1.VersionSelectionSemverPrereleases{}
 		}
 	}
 

@@ -26,7 +26,7 @@ func (a *App) deploy(tplOutput string, changedFunc func(exec.CmdRunResult)) exec
 	for _, dep := range a.app.Spec.Deploy {
 		switch {
 		case dep.Kapp != nil:
-			cancelCh, closeCancelCh := a.newCancelCh()
+			cancelCh, closeCancelCh := a.newCancelCh(onCanceled, onDeleted)
 			defer closeCancelCh()
 
 			kapp, err := a.newKapp(*dep.Kapp, cancelCh)
@@ -58,7 +58,7 @@ func (a *App) delete(changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
 		for _, dep := range a.app.Spec.Deploy {
 			switch {
 			case dep.Kapp != nil:
-				cancelCh, closeCancelCh := a.newCancelCh()
+				cancelCh, closeCancelCh := a.newCancelCh(onCanceled)
 				defer closeCancelCh()
 
 				kapp, err := a.newKapp(*dep.Kapp, cancelCh)
@@ -98,15 +98,17 @@ func (a *App) inspect() exec.CmdRunResult {
 	for _, dep := range a.app.Spec.Deploy {
 		switch {
 		case dep.Kapp != nil:
-			cancelCh, closeCancelCh := a.newCancelCh()
-			defer closeCancelCh()
+			if dep.Kapp.Inspect != nil {
+				cancelCh, closeCancelCh := a.newCancelCh(onCanceled, onDeleted)
+				defer closeCancelCh()
 
-			kapp, err := a.newKapp(*dep.Kapp, cancelCh)
-			if err != nil {
-				return exec.NewCmdRunResultWithErr(fmt.Errorf("Preparing kapp: %s", err))
+				kapp, err := a.newKapp(*dep.Kapp, cancelCh)
+				if err != nil {
+					return exec.NewCmdRunResultWithErr(fmt.Errorf("Preparing kapp: %s", err))
+				}
+
+				result = kapp.Inspect()
 			}
-
-			result = kapp.Inspect()
 
 		default:
 			result.AttachErrorf("%s", fmt.Errorf("Unsupported way to inspect"))
@@ -125,4 +127,14 @@ func (a *App) newKapp(kapp v1alpha1.AppDeployKapp, cancelCh chan struct{}) (*ctl
 
 	return a.deployFactory.NewKapp(kapp, a.app.Spec.ServiceAccountName,
 		a.app.Spec.Cluster, genericOpts, cancelCh)
+}
+
+type cancelCondition func(v1alpha1.App) bool
+
+func onCanceled(app v1alpha1.App) bool {
+	return app.Spec.Canceled
+}
+
+func onDeleted(app v1alpha1.App) bool {
+	return app.DeletionTimestamp != nil
 }

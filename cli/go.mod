@@ -94,4 +94,6 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.1.2 // indirect
 )
 
+replace github.com/vmware-tanzu/carvel-kapp-controller => ../
+
 replace github.com/spf13/cobra => github.com/spf13/cobra v1.1.1

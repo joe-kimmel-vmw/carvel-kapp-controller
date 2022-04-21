@@ -12,10 +12,11 @@ import (
 type Factory struct {
 	coreClient   kubernetes.Interface
 	fetchFactory fetch.Factory
+	kbldAllowBuild bool
 }
 
-func NewFactory(coreClient kubernetes.Interface, fetchFactory fetch.Factory) Factory {
-	return Factory{coreClient, fetchFactory}
+func NewFactory(coreClient kubernetes.Interface, fetchFactory fetch.Factory, kbldAllowBuild bool) Factory {
+	return Factory{coreClient, fetchFactory, kbldAllowBuild}
 }
 
 func (f Factory) NewYtt(opts v1alpha1.AppTemplateYtt, genericOpts GenericOpts) *Ytt {
@@ -23,7 +24,7 @@ func (f Factory) NewYtt(opts v1alpha1.AppTemplateYtt, genericOpts GenericOpts) *
 }
 
 func (f Factory) NewKbld(opts v1alpha1.AppTemplateKbld, genericOpts GenericOpts) *Kbld {
-	return NewKbld(opts, genericOpts)
+	return NewKbld(opts, genericOpts, KbldOpts{AllowBuild: f.kbldAllowBuild})
 }
 
 func (f Factory) NewHelmTemplate(
@@ -34,4 +35,9 @@ func (f Factory) NewHelmTemplate(
 func (f Factory) NewSops(
 	opts v1alpha1.AppTemplateSops, genericOpts GenericOpts) *Sops {
 	return NewSops(opts, genericOpts, f.coreClient)
+}
+
+// NewCue returns a Cue templater
+func (f Factory) NewCue(opts v1alpha1.AppTemplateCue, genericOpts GenericOpts) Template {
+	return newCue(opts, genericOpts, f.coreClient)
 }

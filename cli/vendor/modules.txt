@@ -198,8 +198,8 @@ github.com/stretchr/testify/require
 ## explicit
 github.com/vito/go-interact/interact
 github.com/vito/go-interact/interact/terminal
-# github.com/vmware-tanzu/carvel-kapp-controller v0.27.0
-## explicit; go 1.16
+# github.com/vmware-tanzu/carvel-kapp-controller v0.27.0 => ../
+## explicit; go 1.17
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/internalpackaging/install
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/internalpackaging/v1alpha1
 github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/kappctrl/install
@@ -661,4 +661,5 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
+# github.com/vmware-tanzu/carvel-kapp-controller => ../
 # github.com/spf13/cobra => github.com/spf13/cobra v1.1.1

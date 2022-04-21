@@ -36,7 +36,7 @@ func (rt ReconcileTimer) IsReadyAt(timeAt time.Time) bool {
 	}
 
 	// TODO: Is this needed due to first case statement?
-	// If canceled/paused, then no reconcilation until unpaused
+	// If canceled/paused, then no reconciliation until unpaused
 	if rt.app.Spec.Canceled || rt.app.Spec.Paused {
 		return false
 	}
@@ -83,7 +83,7 @@ func (rt ReconcileTimer) failureSyncPeriod() time.Duration {
 	return rt.syncPeriod()
 }
 
-func (rt ReconcileTimer) hasReconcileStatus(c v1alpha1.AppConditionType) bool {
+func (rt ReconcileTimer) hasReconcileStatus(c v1alpha1.ConditionType) bool {
 	for _, cond := range rt.app.Status.Conditions {
 		if cond.Type == c {
 			return true

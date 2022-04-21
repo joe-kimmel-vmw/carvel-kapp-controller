@@ -24,6 +24,12 @@ func (a *App) Reconcile(force bool) (reconcile.Result, error) {
 	a.appMetrics.InitMetrics(a.Name(), a.Namespace())
 
 	switch {
+	case a.app.DeletionTimestamp != nil:
+		a.log.Info("Started delete")
+		defer func() { a.log.Info("Completed delete") }()
+
+		err = a.reconcileDelete()
+
 	case a.app.Spec.Canceled || a.app.Spec.Paused:
 		a.log.Info("App is canceled or paused, not reconciling")
 
@@ -31,12 +37,6 @@ func (a *App) Reconcile(force bool) (reconcile.Result, error) {
 		a.app.Status.FriendlyDescription = "Canceled/paused"
 
 		err = a.updateStatus("app canceled/paused")
-
-	case a.app.DeletionTimestamp != nil:
-		a.log.Info("Started delete")
-		defer func() { a.log.Info("Completed delete") }()
-
-		err = a.reconcileDelete()
 
 	case force || NewReconcileTimer(a.app).IsReadyAt(time.Now()):
 		a.log.Info("Started deploy")
@@ -190,12 +190,16 @@ func (a *App) resetLastDeployStartedAt() {
 func (a *App) reconcileInspect() error {
 	inspectResult := a.inspect().WithFriendlyYAMLStrings()
 
-	a.app.Status.Inspect = &v1alpha1.AppStatusInspect{
-		Stdout:    inspectResult.Stdout,
-		Stderr:    inspectResult.Stderr,
-		ExitCode:  inspectResult.ExitCode,
-		Error:     inspectResult.ErrorStr(),
-		UpdatedAt: metav1.NewTime(time.Now().UTC()),
+	if !inspectResult.IsEmpty() {
+		a.app.Status.Inspect = &v1alpha1.AppStatusInspect{
+			Stdout:    inspectResult.Stdout,
+			Stderr:    inspectResult.Stderr,
+			ExitCode:  inspectResult.ExitCode,
+			Error:     inspectResult.ErrorStr(),
+			UpdatedAt: metav1.NewTime(time.Now().UTC()),
+		}
+	} else {
+		a.app.Status.Inspect = nil
 	}
 
 	return a.updateStatus("marking inspect completed")
@@ -208,7 +212,7 @@ func (a *App) markObservedLatest() {
 func (a *App) setReconciling() {
 	a.removeAllConditions()
 
-	a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.AppCondition{
+	a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.Condition{
 		Type:   v1alpha1.Reconciling,
 		Status: corev1.ConditionTrue,
 	})
@@ -221,7 +225,7 @@ func (a *App) setReconcileCompleted(result exec.CmdRunResult) {
 	a.removeAllConditions()
 
 	if result.Error != nil {
-		a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.AppCondition{
+		a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.Condition{
 			Type:    v1alpha1.ReconcileFailed,
 			Status:  corev1.ConditionTrue,
 			Message: result.ErrorStr(),
@@ -232,7 +236,7 @@ func (a *App) setReconcileCompleted(result exec.CmdRunResult) {
 		a.appMetrics.RegisterReconcileFailure(a.app.Name, a.app.Namespace)
 		a.setUsefulErrorMessage(result)
 	} else {
-		a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.AppCondition{
+		a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.Condition{
 			Type:    v1alpha1.ReconcileSucceeded,
 			Status:  corev1.ConditionTrue,
 			Message: "",
@@ -248,7 +252,7 @@ func (a *App) setReconcileCompleted(result exec.CmdRunResult) {
 func (a *App) setDeleting() {
 	a.removeAllConditions()
 
-	a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.AppCondition{
+	a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.Condition{
 		Type:   v1alpha1.Deleting,
 		Status: corev1.ConditionTrue,
 	})
@@ -261,7 +265,7 @@ func (a *App) setDeleteCompleted(result exec.CmdRunResult) {
 	a.removeAllConditions()
 
 	if result.Error != nil {
-		a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.AppCondition{
+		a.app.Status.Conditions = append(a.app.Status.Conditions, v1alpha1.Condition{
 			Type:    v1alpha1.DeleteFailed,
 			Status:  corev1.ConditionTrue,
 			Message: result.ErrorStr(),

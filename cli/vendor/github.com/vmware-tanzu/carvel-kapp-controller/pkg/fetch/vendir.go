@@ -7,8 +7,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"io"
-	"strings"
 
 	"github.com/google/go-containerregistry/pkg/name"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/kappctrl/v1alpha1"
@@ -25,26 +23,39 @@ const (
 )
 
 type Vendir struct {
-	nsName        string
-	coreClient    kubernetes.Interface
-	config        vendirconf.Config
-	skipTLSConfig SkipTLSConfig
+	nsName     string
+	coreClient kubernetes.Interface
+	config     vendirconf.Config
+	opts       VendirOpts
 }
 
-func NewVendir(nsName string, coreClient kubernetes.Interface, skipTLSConfig SkipTLSConfig) *Vendir {
+type VendirOpts struct {
+	HookFunc      func(vendirconf.Config) vendirconf.Config
+	SkipTLSConfig SkipTLSConfig
+}
+
+func NewVendir(nsName string, coreClient kubernetes.Interface, opts VendirOpts) *Vendir {
+	if opts.HookFunc == nil {
+		opts.HookFunc = func(conf vendirconf.Config) vendirconf.Config { return conf }
+	}
 	return &Vendir{
-		nsName:        nsName,
-		coreClient:    coreClient,
-		skipTLSConfig: skipTLSConfig,
+		nsName:     nsName,
+		coreClient: coreClient,
+		opts:       opts,
 		config: vendirconf.Config{
 			APIVersion: "vendir.k14s.io/v1alpha1", // TODO: use constant from vendir package
 			Kind:       "Config",                  // TODO: use constant from vendir package
-		}}
+		},
+	}
 }
 
 // AddDir adds a directory to vendir's config for each fetcher that the app spec declares.
 // vendir fetches resources into your filesystem, so the destination directory is a core part of vendir config.
 func (v *Vendir) AddDir(fetch v1alpha1.AppFetch, dirPath string) error {
+	if fetch.Path != "" {
+		dirPath = fetch.Path
+	}
+
 	switch {
 	case fetch.Inline != nil:
 		v.config.Directories = append(v.config.Directories, v.dir(v.inlineConf(*fetch.Inline), dirPath))
@@ -63,6 +74,11 @@ func (v *Vendir) AddDir(fetch v1alpha1.AppFetch, dirPath string) error {
 	}
 
 	return nil
+}
+
+// Config is just for accessing (a copy of) the internal config for testing; you probably don't want to call this IRL
+func (v *Vendir) Config() vendirconf.Config {
+	return v.config
 }
 
 func (v *Vendir) dir(contents vendirconf.DirectoryContents, dirPath string) vendirconf.Directory {
@@ -186,10 +202,10 @@ func (v *Vendir) localRefConf(ref *v1alpha1.AppFetchLocalRef) *vendirconf.Direct
 	}
 }
 
-// ConfigReader generates config yaml bytes and wraps them in a bytes.Reader.
-// These bytes could be written to a file and then passed to vendir
-// but can also be mapped to stdin of the vendir process.
-func (v *Vendir) ConfigReader() (io.Reader, error) {
+// ConfigBytes fetches all the referenced Secrets & ConfigMaps and returns the
+// multi-document YAML-encoded config that vendir consumes.
+// https://github.com/vmware-tanzu/carvel-vendir/blob/develop/examples/secrets/vendir.yml
+func (v *Vendir) ConfigBytes() ([]byte, error) {
 	var resourcesYaml [][]byte
 	for _, dir := range v.config.Directories {
 		for _, contents := range dir.Contents {
@@ -202,14 +218,14 @@ func (v *Vendir) ConfigReader() (io.Reader, error) {
 		}
 	}
 
-	vendirConfBytes, err := v.config.AsBytes()
+	vendirConfBytes, err := v.opts.HookFunc(v.config).AsBytes()
 	if err != nil {
 		return nil, err
 	}
 
 	finalConfig := bytes.Join(append(resourcesYaml, vendirConfBytes), []byte("---\n"))
 
-	return bytes.NewReader(finalConfig), nil
+	return finalConfig, nil
 }
 
 func (v *Vendir) requiredResourcesYaml(contents vendirconf.DirectoryContents) ([][]byte, error) {
@@ -351,9 +367,8 @@ func (v *Vendir) configMapBytes(configMapRef vendirconf.DirectoryContentsLocalRe
 // expand this option to other fetch options, we will need to add hostname
 // extraction for those
 func (v *Vendir) shouldSkipTLSVerify(url string) bool {
-	hostname := v.extractImageRefHostname(url)
-	skip := v.skipTLSConfig.ShouldSkipTLSForDomain(hostname)
-	return skip
+	hostAndPort := v.extractImageRefHostname(url)
+	return v.opts.SkipTLSConfig.ShouldSkipTLSForAuthority(hostAndPort)
 }
 
 func (v *Vendir) extractImageRefHostname(ref string) string {
@@ -361,8 +376,5 @@ func (v *Vendir) extractImageRefHostname(ref string) string {
 	if err != nil {
 		return ""
 	}
-
-	hostnameAndPort := parsedRef.Context().RegistryStr()
-
-	return strings.Split(hostnameAndPort, ":")[0]
+	return parsedRef.Context().RegistryStr()
 }

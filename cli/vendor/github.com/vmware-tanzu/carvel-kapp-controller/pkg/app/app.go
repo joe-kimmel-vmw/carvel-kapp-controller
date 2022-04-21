@@ -6,7 +6,6 @@ package app
 import (
 	"sync"
 
-	"github.com/ghodss/yaml"
 	"github.com/go-logr/logr"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/kappctrl/v1alpha1"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/deploy"
@@ -14,6 +13,7 @@ import (
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/metrics"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/reftracker"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/template"
+	"sigs.k8s.io/yaml"
 )
 
 type Hooks struct {
@@ -88,7 +88,7 @@ func (a *App) flushUpdateStatus(desc string) error {
 	return nil
 }
 
-func (a *App) newCancelCh() (chan struct{}, func()) {
+func (a *App) newCancelCh(conditions ...cancelCondition) (chan struct{}, func()) {
 	var cancelOnce sync.Once
 	cancelCh := make(chan struct{})
 
@@ -98,8 +98,11 @@ func (a *App) newCancelCh() (chan struct{}, func()) {
 	}
 
 	cancelFuncOnApp := func(app v1alpha1.App) {
-		if app.Spec.Canceled {
-			cancelFunc()
+		for _, condition := range conditions {
+			if condition(app) {
+				cancelFunc()
+				return
+			}
 		}
 	}
 
@@ -178,6 +181,13 @@ func (a *App) SecretRefs() map[reftracker.RefKey]struct{} {
 					secrets[refKey] = struct{}{}
 				}
 			}
+		case tpl.Cue != nil && tpl.Cue.ValuesFrom != nil:
+			for _, valsFrom := range tpl.Cue.ValuesFrom {
+				if valsFrom.SecretRef != nil {
+					refKey := reftracker.NewSecretKey(valsFrom.SecretRef.Name, a.app.Namespace)
+					secrets[refKey] = struct{}{}
+				}
+			}
 		default:
 		}
 	}
@@ -223,6 +233,13 @@ func (a *App) ConfigMapRefs() map[reftracker.RefKey]struct{} {
 			}
 		case tpl.HelmTemplate != nil && tpl.HelmTemplate.ValuesFrom != nil:
 			for _, valsFrom := range tpl.HelmTemplate.ValuesFrom {
+				if valsFrom.ConfigMapRef != nil {
+					refKey := reftracker.NewConfigMapKey(valsFrom.ConfigMapRef.Name, a.app.Namespace)
+					configMaps[refKey] = struct{}{}
+				}
+			}
+		case tpl.Cue != nil && tpl.Cue.ValuesFrom != nil:
+			for _, valsFrom := range tpl.Cue.ValuesFrom {
 				if valsFrom.ConfigMapRef != nil {
 					refKey := reftracker.NewConfigMapKey(valsFrom.ConfigMapRef.Name, a.app.Namespace)
 					configMaps[refKey] = struct{}{}

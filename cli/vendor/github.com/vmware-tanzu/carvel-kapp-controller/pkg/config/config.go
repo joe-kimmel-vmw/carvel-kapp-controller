@@ -6,6 +6,8 @@ package config
 import (
 	"context"
 	"fmt"
+	"io"
+	"net"
 	"os"
 	"strings"
 
@@ -20,8 +22,9 @@ import (
 const (
 	kcConfigName = "kapp-controller-config"
 
-	caCertsKey      = "caCerts"
-	systemCertsFile = "/etc/pki/tls/certs/ca-bundle.crt"
+	caCertsKey            = "caCerts"
+	systemCertsFile       = "/etc/pki/tls/certs/ca-bundle.crt"
+	backupSystemCertsFile = "/etc/pki/tls/certs/ca-bundle.crt.orig"
 
 	httpProxyKey     = "httpProxy"
 	httpsProxyKey    = "httpsProxy"
@@ -31,17 +34,21 @@ const (
 	noProxyEnvVar    = "no_proxy"
 
 	skipTLSVerifyKey = "dangerousSkipTLSVerify"
+
+	kubernetesServiceHostEnvVar    = "KUBERNETES_SERVICE_HOST"
+	kubernetesServiceHostShorthand = "KAPPCTRL_KUBERNETES_SERVICE_HOST"
 )
 
 // Config is populated from the cluster's Secret or ConfigMap and sets behavior of kapp-controller.
 // NOTE because config may be populated from a Secret use caution if you're tempted to serialize.
 type Config struct {
-	caCerts       string
-	httpProxy     string
-	httpsProxy    string
-	noProxy       string
-	skipTLSVerify string
-	populated     bool
+	caCerts            string
+	httpProxy          string
+	httpsProxy         string
+	noProxy            string
+	skipTLSVerify      string
+	BackupCaBundlePath string
+	SystemCaBundlePath string
 }
 
 // findExternalConfig will populate exactly one of its return values and the others will be nil.
@@ -95,33 +102,41 @@ func GetConfig(client kubernetes.Interface) (*Config, error) {
 }
 
 func (gc *Config) Apply() error {
-	if !gc.populated {
-		return nil
-	}
-
 	err := gc.addTrustedCerts(gc.caCerts)
 	if err != nil {
 		return fmt.Errorf("Adding trusted certs: %s", err)
 	}
 
-	gc.configureProxies(gc.httpProxy, gc.httpsProxy, gc.noProxy)
+	gc.configureProxies()
 
 	return nil
 }
 
-func (gc *Config) ShouldSkipTLSForDomain(candidateDomain string) bool {
-	if !gc.populated {
+// ShouldSkipTLSForAuthority compares a candidate host or host:port against a stored set of allow-listed authorities.
+// the allow-list is built from the user-facing flag `dangerousSkipTLSVerify`.
+// Note that in some cases the allow-list may contain ports, so the function name could also be ShouldSkipTLSForDomainAndPort
+// Note that "authority" is defined in: https://www.rfc-editor.org/rfc/rfc3986#section-3 to mean "host and port"
+func (gc *Config) ShouldSkipTLSForAuthority(candidateAuthority string) bool {
+	authorities := gc.skipTLSVerify
+	if len(authorities) == 0 {
 		return false
 	}
 
-	domains := gc.skipTLSVerify
-	if len(domains) == 0 {
-		return false
+	host, _, err := net.SplitHostPort(candidateAuthority)
+	if err != nil {
+		// SplitHostPort considers it to be an error if there's no port at all, but that's a common case for us.
+		host = candidateAuthority
 	}
 
-	for _, domain := range strings.Split(domains, ",") {
+	for _, spaceyAuthority := range strings.Split(authorities, ",") {
 		// in case user gives domains in form "a, b"
-		if strings.TrimSpace(domain) == candidateDomain {
+		authority := strings.TrimSpace(spaceyAuthority)
+		// check if the host matches the allowed authority, meaning all ports for that host are allowed
+		if authority == host {
+			return true
+		}
+		// check the full candidate string in case they both have a port and its the same port
+		if authority == candidateAuthority {
 			return true
 		}
 	}
@@ -130,39 +145,81 @@ func (gc *Config) ShouldSkipTLSForDomain(candidateDomain string) bool {
 }
 
 func (gc *Config) addTrustedCerts(certChain string) (err error) {
-	if certChain == "" {
-		return nil
+	backupCertsFilePath := backupSystemCertsFile
+	systemCertsFilePath := systemCertsFile
+
+	if gc.BackupCaBundlePath != "" && gc.SystemCaBundlePath != "" {
+		backupCertsFilePath = gc.BackupCaBundlePath
+		systemCertsFilePath = gc.SystemCaBundlePath
 	}
 
-	var file *os.File
-	file, err = os.OpenFile(systemCertsFile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, os.ModeAppend)
+	backupFile, err := os.Open(backupCertsFilePath)
 	if err != nil {
-		return fmt.Errorf("Opening certs file: %s", err)
+		return fmt.Errorf("Opening original certs file: %s", err)
+	}
+	defer backupFile.Close()
+
+	tmpFile, err := os.CreateTemp(os.TempDir(), "tmp-ca-bundle-")
+	if err != nil {
+		return fmt.Errorf("Creating tmp certs file: %s", err)
+	}
+	defer os.Remove(tmpFile.Name())
+
+	_, err = io.Copy(tmpFile, backupFile)
+	if err != nil {
+		_ = tmpFile.Close()
+		return fmt.Errorf("Copying certs file: %s", err)
 	}
 
-	_, err = file.Write([]byte("\n" + certChain))
+	_, err = tmpFile.Write([]byte("\n" + certChain))
 	if err != nil {
-		_ = file.Close()
+		_ = tmpFile.Close()
 		return err
 	}
 
-	return file.Close()
+	if err = tmpFile.Close(); err != nil {
+		return err
+	}
+
+	err = os.Rename(tmpFile.Name(), systemCertsFilePath)
+	if err != nil {
+		return fmt.Errorf("Renaming certs file: %s", err)
+	}
+
+	return nil
 }
 
-func (gc *Config) configureProxies(httpProxy, httpsProxy, noProxy string) {
-	if httpProxy != "" {
-		os.Setenv(httpProxyEnvVar, httpProxy)
-		os.Setenv(strings.ToUpper(httpProxyEnvVar), httpProxy)
+func (gc *Config) configureProxies() {
+	if httpProxyEnvVar == "" {
+		os.Unsetenv(httpProxyEnvVar)
+		os.Unsetenv(strings.ToUpper(httpProxyEnvVar))
+	} else {
+		os.Setenv(httpProxyEnvVar, gc.httpProxy)
+		os.Setenv(strings.ToUpper(httpProxyEnvVar), gc.httpProxy)
 	}
 
-	if httpsProxy != "" {
-		os.Setenv(httpsProxyEnvVar, httpsProxy)
-		os.Setenv(strings.ToUpper(httpsProxyEnvVar), httpsProxy)
+	if httpsProxyEnvVar == "" {
+		os.Unsetenv(httpsProxyEnvVar)
+		os.Unsetenv(strings.ToUpper(httpsProxyEnvVar))
+	} else {
+		os.Setenv(httpsProxyEnvVar, gc.httpsProxy)
+		os.Setenv(strings.ToUpper(httpsProxyEnvVar), gc.httpsProxy)
 	}
 
-	if noProxy != "" {
-		os.Setenv(noProxyEnvVar, noProxy)
-		os.Setenv(strings.ToUpper(noProxyEnvVar), noProxy)
+	if noProxyEnvVar == "" {
+		os.Unsetenv(noProxyEnvVar)
+		os.Unsetenv(strings.ToUpper(noProxyEnvVar))
+	} else {
+		gc.addKubernetesServiceHostInNoProxy()
+		os.Setenv(noProxyEnvVar, gc.noProxy)
+		os.Setenv(strings.ToUpper(noProxyEnvVar), gc.noProxy)
+	}
+}
+
+func (gc *Config) addKubernetesServiceHostInNoProxy() {
+	if strings.Contains(gc.noProxy, kubernetesServiceHostShorthand) {
+		k8sSvcHost := os.Getenv(kubernetesServiceHostEnvVar)
+		gc.noProxy = strings.Replace(gc.noProxy, kubernetesServiceHostShorthand, k8sSvcHost, 1)
 	}
 }
 
@@ -185,5 +242,4 @@ func (gc *Config) addDataToConfig(data map[string]string) {
 	gc.httpsProxy = data[httpsProxyKey]
 	gc.noProxy = data[noProxyKey]
 	gc.skipTLSVerify = data[skipTLSVerifyKey]
-	gc.populated = true
 }
