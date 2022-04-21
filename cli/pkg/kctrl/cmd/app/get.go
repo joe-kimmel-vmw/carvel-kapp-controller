@@ -108,7 +108,7 @@ func (o *GetOptions) formatOwnerReferences(references []metav1.OwnerReference) [
 	return referenceList
 }
 
-func (o *GetOptions) isFailing(conditions []kcv1alpha1.AppCondition) bool {
+func (o *GetOptions) isFailing(conditions []kcv1alpha1.Condition) bool {
 	for _, condition := range conditions {
 		if condition.Type == kcv1alpha1.ReconcileFailed && condition.Status == corev1.ConditionTrue {
 			return true
