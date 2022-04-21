@@ -64,6 +64,18 @@ type localSecrets struct {
 	Secrets []corev1api.Secret
 }
 
+func (localSecrets) SecretWithData(sec corev1api.Secret) corev1api.Secret {
+	sec = *sec.DeepCopy()
+	if len(sec.StringData) > 0 {
+		sec.Data = map[string][]byte{}
+		for k, v := range sec.StringData {
+			sec.Data[k] = []byte(v)
+		}
+		sec.StringData = nil
+	}
+	return sec
+}
+
 type MinCoreClient struct {
 	client          kubernetes.Interface
 	localSecrets    *localSecrets
@@ -365,7 +377,8 @@ func (*Secrets) DeleteCollection(ctx context.Context, opts metav1.DeleteOptions,
 func (sec *Secrets) Get(ctx context.Context, name string, opts metav1.GetOptions) (*corev1api.Secret, error) {
 	for _, secret := range sec.localSecrets.Secrets {
 		if secret.Name == name && secret.Namespace == sec.namespace {
-			return secret.DeepCopy(), nil
+			secCopy := sec.localSecrets.SecretWithData(secret)
+			return &secCopy, nil
 		}
 	}
 	return sec.client.Get(ctx, name, opts)
