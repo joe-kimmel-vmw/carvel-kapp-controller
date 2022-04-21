@@ -45,6 +45,7 @@ type DeployOptions struct {
 	NamespaceFlags cmdcore.NamespaceFlags
 
 	Files     []string
+	Local     bool
 	KbldBuild bool
 	Delete    bool
 	Debug     bool
@@ -64,6 +65,7 @@ func NewDeployCmd(o *DeployOptions, flagsFactory cmdcore.FlagsFactory) *cobra.Co
 	o.NamespaceFlags.Set(cmd, flagsFactory)
 	cmd.Flags().StringSliceVarP(&o.Files, "file", "f", nil, "Set App CR file (required)")
 
+	cmd.Flags().BoolVarP(&o.Local, "local", "l", false, "Use local fetch source")
 	cmd.Flags().BoolVarP(&o.KbldBuild, "kbld-build", "b", false, "Allow kbld build")
 	cmd.Flags().BoolVar(&o.Delete, "delete", false, "Delete deployed app")
 	cmd.Flags().BoolVar(&o.Debug, "debug", false, "Show kapp-controller logs")
@@ -124,12 +126,17 @@ func (o *DeployOptions) Run() error {
 	kcClient := fakekc.NewSimpleClientset(objs...)
 	dpkgClient := fakedpkg.NewSimpleClientset(configs.PkgsAsObjects()...)
 
-	vendirConf, err := newLocalVendirConf(primaryAnns)
-	if err != nil {
-		return fmt.Errorf("Calculating local vendir changes: %s", err)
+	var vendirHookFunc func(conf vendirconf.Config) vendirconf.Config
+	if o.Local {
+		vendirConf, err := newLocalVendirConf(primaryAnns)
+		if err != nil {
+			return fmt.Errorf("Calculating local vendir changes: %s", err)
+		}
+		vendirHookFunc = vendirConf.Adjust
 	}
 
-	appReconciler, pkgiReconciler := o.newReconcilers(minCoreClient, kcClient, dpkgClient, vendirConf.Adjust)
+	appReconciler, pkgiReconciler := o.newReconcilers(
+		minCoreClient, kcClient, dpkgClient, vendirHookFunc)
 
 	err = o.printRs(appRes.ObjectMeta, kcClient)
 	if err != nil {
