@@ -5,6 +5,7 @@ package fetch
 
 import (
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/kappctrl/v1alpha1"
+	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/exec"
 	"k8s.io/client-go/kubernetes"
 )
 
@@ -15,10 +16,11 @@ type SkipTLSConfig interface {
 type Factory struct {
 	coreClient kubernetes.Interface
 	vendirOpts VendirOpts
+	cmdRunner exec.CmdRunner
 }
 
-func NewFactory(coreClient kubernetes.Interface, vendirOpts VendirOpts) Factory {
-	return Factory{coreClient, vendirOpts}
+func NewFactory(coreClient kubernetes.Interface, vendirOpts VendirOpts, cmdRunner exec.CmdRunner) Factory {
+	return Factory{coreClient, vendirOpts, cmdRunner}
 }
 
 func (f Factory) NewInline(opts v1alpha1.AppFetchInline, nsName string) *Inline {
@@ -27,5 +29,5 @@ func (f Factory) NewInline(opts v1alpha1.AppFetchInline, nsName string) *Inline 
 
 // TODO: pass v1alpha1.Vendir opts here once api is exapnded
 func (f Factory) NewVendir(nsName string) *Vendir {
-	return NewVendir(nsName, f.coreClient, f.vendirOpts)
+	return NewVendir(nsName, f.coreClient, f.vendirOpts, f.cmdRunner)
 }

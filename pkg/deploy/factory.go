@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/kappctrl/v1alpha1"
+	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/exec"
 	"k8s.io/client-go/kubernetes"
 )
 
@@ -15,10 +16,12 @@ type Factory struct {
 
 	kubeconfigSecrets *KubeconfigSecrets
 	serviceAccounts   *ServiceAccounts
+
+	cmdRunner exec.CmdRunner
 }
 
-func NewFactory(coreClient kubernetes.Interface) Factory {
-	return Factory{coreClient, NewKubeconfigSecrets(coreClient), NewServiceAccounts(coreClient)}
+func NewFactory(coreClient kubernetes.Interface, cmdRunner exec.CmdRunner) Factory {
+	return Factory{coreClient, NewKubeconfigSecrets(coreClient), NewServiceAccounts(coreClient), cmdRunner}
 }
 
 func (f Factory) NewKapp(opts v1alpha1.AppDeployKapp, saName string,
@@ -44,7 +47,7 @@ func (f Factory) NewKapp(opts v1alpha1.AppDeployKapp, saName string,
 		return nil, fmt.Errorf("Expected service account or cluster specified")
 	}
 
-	return NewKapp(opts, processedGenericOpts, cancelCh), nil
+	return NewKapp(opts, processedGenericOpts, cancelCh, f.cmdRunner), nil
 }
 
 // NewKappPrivileged is used for package repositories where users aren't required to provide
@@ -62,5 +65,5 @@ func (f Factory) NewKappPrivileged(opts v1alpha1.AppDeployKapp,
 		DangerousUsePodServiceAccount: true,
 	}
 
-	return NewKapp(opts, pgo, cancelCh), nil
+	return NewKapp(opts, pgo, cancelCh, f.cmdRunner), nil
 }

@@ -15,9 +15,10 @@ import (
 )
 
 type Kbld struct {
-	opts        v1alpha1.AppTemplateKbld
-	genericOpts GenericOpts
+	opts           v1alpha1.AppTemplateKbld
+	genericOpts    GenericOpts
 	additionalOpts KbldOpts
+	cmdRunner      exec.CmdRunner
 }
 
 type KbldOpts struct {
@@ -28,9 +29,10 @@ type KbldOpts struct {
 var _ Template = &Kbld{}
 
 func NewKbld(opts v1alpha1.AppTemplateKbld,
-	genericOpts GenericOpts, additionalOpts KbldOpts) *Kbld {
+	genericOpts GenericOpts, additionalOpts KbldOpts,
+	cmdRunner exec.CmdRunner) *Kbld {
 
-	return &Kbld{opts, genericOpts, additionalOpts}
+	return &Kbld{opts, genericOpts, additionalOpts, cmdRunner}
 }
 
 func (t *Kbld) TemplateDir(dirPath string) (exec.CmdRunResult, bool) {
@@ -58,7 +60,7 @@ func (t *Kbld) template(dirPath string, input io.Reader) exec.CmdRunResult {
 	cmd.Stdout = &stdoutBs
 	cmd.Stderr = &stderrBs
 
-	err = cmd.Run()
+	err = t.cmdRunner.Run(cmd)
 
 	result := exec.CmdRunResult{
 		Stdout: stdoutBs.String(),

@@ -26,13 +26,15 @@ type Sops struct {
 	opts        v1alpha1.AppTemplateSops
 	genericOpts GenericOpts
 	coreClient  kubernetes.Interface
+	cmdRunner   exec.CmdRunner
 }
 
 var _ Template = &Sops{}
 
-func NewSops(opts v1alpha1.AppTemplateSops,
-	genericOpts GenericOpts, coreClient kubernetes.Interface) *Sops {
-	return &Sops{opts, genericOpts, coreClient}
+func NewSops(opts v1alpha1.AppTemplateSops, genericOpts GenericOpts,
+	coreClient kubernetes.Interface, cmdRunner exec.CmdRunner) *Sops {
+
+	return &Sops{opts, genericOpts, coreClient, cmdRunner}
 }
 
 func (t *Sops) TemplateDir(dirPath string) (exec.CmdRunResult, bool) {
@@ -142,7 +144,7 @@ func (t *Sops) decryptSopsFile(path, newPath string, args, env []string) error {
 	cmd.Stdout = &stdoutBs
 	cmd.Stderr = &stderrBs
 
-	err := cmd.Run()
+	err := t.cmdRunner.Run(cmd)
 	if err != nil {
 		return fmt.Errorf("Running sops: %s, %v", stderrBs.String(), err)
 	}

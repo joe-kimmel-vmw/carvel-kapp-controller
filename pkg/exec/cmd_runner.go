@@ -8,7 +8,20 @@ import (
 	"os/exec"
 )
 
-func RunWithCancel(cmd *exec.Cmd, cancelCh chan struct{}) error {
+type CmdRunner interface {
+	Run(*exec.Cmd) error
+	RunWithCancel(cmd *exec.Cmd, cancelCh chan struct{}) error
+}
+
+type PlainCmdRunner struct{}
+
+var _ CmdRunner = PlainCmdRunner{}
+
+func (PlainCmdRunner) Run(cmd *exec.Cmd) error {
+	return cmd.Run()
+}
+
+func (PlainCmdRunner) RunWithCancel(cmd *exec.Cmd, cancelCh chan struct{}) error {
 	select {
 	case <-cancelCh:
 		return fmt.Errorf("Already canceled")

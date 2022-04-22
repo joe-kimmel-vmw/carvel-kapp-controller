@@ -7,12 +7,14 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"os"
+	goexec "os/exec"
 
 	"github.com/google/go-containerregistry/pkg/name"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/kappctrl/v1alpha1"
-
 	// we run vendir by shelling out to it, but we create the vendir configs with help from a vendored copy of vendir.
 	vendirconf "github.com/vmware-tanzu/carvel-vendir/pkg/vendir/config"
+	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/exec"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	kyaml "sigs.k8s.io/yaml"
@@ -27,6 +29,7 @@ type Vendir struct {
 	coreClient kubernetes.Interface
 	config     vendirconf.Config
 	opts       VendirOpts
+	cmdRunner  exec.CmdRunner
 }
 
 type VendirOpts struct {
@@ -34,7 +37,9 @@ type VendirOpts struct {
 	SkipTLSConfig SkipTLSConfig
 }
 
-func NewVendir(nsName string, coreClient kubernetes.Interface, opts VendirOpts) *Vendir {
+func NewVendir(nsName string, coreClient kubernetes.Interface,
+	opts VendirOpts, cmdRunner exec.CmdRunner) *Vendir {
+
 	if opts.HookFunc == nil {
 		opts.HookFunc = func(conf vendirconf.Config) vendirconf.Config { return conf }
 	}
@@ -46,6 +51,7 @@ func NewVendir(nsName string, coreClient kubernetes.Interface, opts VendirOpts) 
 			APIVersion: "vendir.k14s.io/v1alpha1", // TODO: use constant from vendir package
 			Kind:       "Config",                  // TODO: use constant from vendir package
 		},
+		cmdRunner: cmdRunner,
 	}
 }
 
@@ -377,4 +383,24 @@ func (v *Vendir) extractImageRefHostname(ref string) string {
 		return ""
 	}
 	return parsedRef.Context().RegistryStr()
+}
+
+func (v *Vendir) Run(conf []byte, workingDir string) exec.CmdRunResult {
+	var stdoutBs, stderrBs bytes.Buffer
+
+	cmd := goexec.Command("vendir", "sync", "-f", "-", "--lock-file", os.DevNull)
+	cmd.Dir = workingDir
+	cmd.Stdin = bytes.NewReader(conf)
+	cmd.Stdout = &stdoutBs
+	cmd.Stderr = &stderrBs
+
+	err := v.cmdRunner.Run(cmd)
+
+	result := exec.CmdRunResult{
+		Stdout: stdoutBs.String(),
+		Stderr: stderrBs.String(),
+	}
+	result.AttachErrorf("Fetching resources: %s", err)
+
+	return result
 }
