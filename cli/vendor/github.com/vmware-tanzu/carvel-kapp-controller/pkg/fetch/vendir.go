@@ -13,8 +13,8 @@ import (
 	"github.com/google/go-containerregistry/pkg/name"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/apis/kappctrl/v1alpha1"
 	// we run vendir by shelling out to it, but we create the vendir configs with help from a vendored copy of vendir.
-	vendirconf "github.com/vmware-tanzu/carvel-vendir/pkg/vendir/config"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/exec"
+	vendirconf "github.com/vmware-tanzu/carvel-vendir/pkg/vendir/config"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	kyaml "sigs.k8s.io/yaml"

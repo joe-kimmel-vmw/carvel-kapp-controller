@@ -16,7 +16,7 @@ type SkipTLSConfig interface {
 type Factory struct {
 	coreClient kubernetes.Interface
 	vendirOpts VendirOpts
-	cmdRunner exec.CmdRunner
+	cmdRunner  exec.CmdRunner
 }
 
 func NewFactory(coreClient kubernetes.Interface, vendirOpts VendirOpts, cmdRunner exec.CmdRunner) Factory {
