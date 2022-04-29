@@ -1878,7 +1878,7 @@ func schema_apiserver_apis_datapackaging_v1alpha1_PackageSpec(ref common.Referen
 					},
 					"revoked": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Revoked indicates that this package is no longer recommended for use This package likely contains unsupported software, a CVE or a critical bug.",
+							Description: "Revoked indicates that this package is no longer recommended for use. This package likely contains unsupported software, a CVE or a critical bug.",
 							Ref:         ref("github.com/vmware-tanzu/carvel-kapp-controller/pkg/apiserver/apis/datapackaging/v1alpha1.Revoked"),
 						},
 					},

@@ -80,7 +80,7 @@ type PackageSpec struct {
 	// +optional
 	IncludedSoftware []IncludedSoftware `json:"includedSoftware,omitempty" protobuf:"bytes,9,opt,name=includedSoftware"`
 
-	// Revoked indicates that this package is no longer recommended for use
+	// Revoked indicates that this package is no longer recommended for use.
 	// This package likely contains unsupported software, a CVE or a critical bug.
 	// +optional
 	Revoked *Revoked `json:"revoked,omitempty" protobuf:"bytes,10,opt,name=revoked"`
