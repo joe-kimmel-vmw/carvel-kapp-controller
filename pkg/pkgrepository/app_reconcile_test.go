@@ -13,6 +13,7 @@ import (
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/client/clientset/versioned/fake"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/deploy"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/fetch"
+	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/exec"
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/template"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -38,9 +39,9 @@ func Test_NoInspectReconcile_IfNoDeployAttempted(t *testing.T) {
 
 	k8scs := k8sfake.NewSimpleClientset()
 	kappcs := fake.NewSimpleClientset()
-	fetchFac := fetch.NewFactory(k8scs, nil)
-	tmpFac := template.NewFactory(k8scs, fetchFac)
-	deployFac := deploy.NewFactory(k8scs)
+	fetchFac := fetch.NewFactory(k8scs, fetch.VendirOpts{}, exec.NewPlainCmdRunner())
+	tmpFac := template.NewFactory(k8scs, fetchFac, false, exec.NewPlainCmdRunner())
+	deployFac := deploy.NewFactory(k8scs, exec.NewPlainCmdRunner())
 	pkgr := v1alpha12.PackageRepository{}
 
 	crdApp := NewCRDApp(&app, &pkgr, log, kappcs, fetchFac, tmpFac, deployFac)
@@ -99,9 +100,9 @@ func Test_TemplateError_DisplayedInStatus_UsefulErrorMessageProperty(t *testing.
 
 	k8scs := k8sfake.NewSimpleClientset()
 	kappcs := fake.NewSimpleClientset()
-	fetchFac := fetch.NewFactory(k8scs, nil)
-	tmpFac := template.NewFactory(k8scs, fetchFac)
-	deployFac := deploy.NewFactory(k8scs)
+	fetchFac := fetch.NewFactory(k8scs, fetch.VendirOpts{}, exec.NewPlainCmdRunner())
+	tmpFac := template.NewFactory(k8scs, fetchFac, false, exec.NewPlainCmdRunner())
+	deployFac := deploy.NewFactory(k8scs, exec.NewPlainCmdRunner())
 	pkgr := v1alpha12.PackageRepository{}
 
 	crdApp := NewCRDApp(&app, &pkgr, log, kappcs, fetchFac, tmpFac, deployFac)

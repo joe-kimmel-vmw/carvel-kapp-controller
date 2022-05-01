@@ -17,6 +17,10 @@ type PlainCmdRunner struct{}
 
 var _ CmdRunner = PlainCmdRunner{}
 
+func NewPlainCmdRunner() PlainCmdRunner {
+	return PlainCmdRunner{}
+}
+
 func (PlainCmdRunner) Run(cmd *exec.Cmd) error {
 	return cmd.Run()
 }

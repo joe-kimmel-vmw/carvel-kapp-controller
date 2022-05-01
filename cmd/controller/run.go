@@ -155,7 +155,7 @@ func Run(opts Options, runLog logr.Logger) error {
 			AppClient:  kcClient,
 			KcConfig:   kcConfig,
 			AppMetrics: appMetrics,
-			CmdRunner:  exec.PlainCmdRunner{},
+			CmdRunner:  exec.NewPlainCmdRunner(),
 		}
 		reconciler := app.NewReconciler(kcClient, runLog.WithName("app"),
 			appFactory, refTracker, updateStatusTracker)
