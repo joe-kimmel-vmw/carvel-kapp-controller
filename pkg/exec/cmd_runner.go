@@ -8,6 +8,10 @@ import (
 	"os/exec"
 )
 
+// CmdRunner allows to run commands on the OS. All commands
+// running within kapp-controller should happen through an instance
+// of this interface so that they can be intercepted and potentially
+// modified in kctrl when running kapp-controller locally.
 type CmdRunner interface {
 	Run(*exec.Cmd) error
 	RunWithCancel(cmd *exec.Cmd, cancelCh chan struct{}) error
