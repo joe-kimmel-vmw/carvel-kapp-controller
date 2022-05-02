@@ -17,9 +17,6 @@ type Factory struct {
 	cmdRunner      exec.CmdRunner
 }
 
-// NewFactory constructs templating primitives. Note that kbldAllowBuild
-// should not be set to true within kapp-controller when running in cluster
-// to avoid allowing builds to execute within kapp-controller pod.
 func NewFactory(coreClient kubernetes.Interface, fetchFactory fetch.Factory,
 	kbldAllowBuild bool, cmdRunner exec.CmdRunner) Factory {
 
