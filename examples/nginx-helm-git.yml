@@ -8,17 +8,10 @@ spec:
   fetch:
   - git:
       url: https://github.com/bitnami/charts
-      ref: f256d281d17db5a595ddc6cdfa06bd1a30cbf70b
+      ref: b3619f0a83392ac5e10e298f1f4df980683d8328
       subPath: bitnami/nginx
-    path: root
-  - git:
-      url: https://github.com/bitnami/charts
-      ref: f256d281d17db5a595ddc6cdfa06bd1a30cbf70b
-      subPath: bitnami/common
-    path: root/charts/common
   template:
   - helmTemplate:
-      path: root
       valuesFrom:
       - secretRef:
           name: nginx-values
