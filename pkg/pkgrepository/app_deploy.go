@@ -30,7 +30,7 @@ func (a *App) deploy(tplOutput string) exec.CmdRunResult {
 			return exec.NewCmdRunResultWithErr(fmt.Errorf("Preparing kapp: %s", err))
 		}
 
-		return kapp.Deploy(tplOutput, a.startFlushingAllStatusUpdates, func(exec.CmdRunResult) {})
+		return kapp.Deploy(tplOutput, a.app.Name+".pkgr", a.startFlushingAllStatusUpdates, func(exec.CmdRunResult) {})
 
 	default:
 		return exec.NewCmdRunResultWithErr(fmt.Errorf("Unsupported way to deploy"))
@@ -54,7 +54,7 @@ func (a *App) delete() exec.CmdRunResult {
 				return exec.NewCmdRunResultWithErr(fmt.Errorf("Preparing kapp: %s", err))
 			}
 
-			result = kapp.Delete(a.startFlushingAllStatusUpdates, func(exec.CmdRunResult) {})
+			result = kapp.Delete(a.app.Name+".pkgr", a.startFlushingAllStatusUpdates, func(exec.CmdRunResult) {})
 
 		default:
 			result.AttachErrorf("%s", fmt.Errorf("Unsupported way to delete"))

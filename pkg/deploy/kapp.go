@@ -40,15 +40,15 @@ func NewKapp(opts v1alpha1.AppDeployKapp, genericOpts ProcessedGenericOpts,
 	return &Kapp{opts, genericOpts, globalDeployRawOpts, cancelCh, cmdRunner}
 }
 
-func (a *Kapp) Deploy(tplOutput string, startedApplyingFunc func(),
+func (a *Kapp) Deploy(tplOutput string, appName string, startedApplyingFunc func(),
 	changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
 
-	args, err := a.addDeployArgs([]string{"deploy", "-f", "-"})
+	args, err := a.addDeployArgs([]string{"deploy", "--prev-app", a.managedName(), "-f", "-"})
 	if err != nil {
 		return exec.NewCmdRunResultWithErr(err)
 	}
 
-	args, env := a.addGenericArgs(args)
+	args, env := a.addGenericArgs(args, appName)
 
 	cmd := goexec.Command("kapp", args...)
 	cmd.Env = append(os.Environ(), env...)
@@ -65,13 +65,13 @@ func (a *Kapp) Deploy(tplOutput string, startedApplyingFunc func(),
 	return result
 }
 
-func (a *Kapp) Delete(startedApplyingFunc func(), changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
+func (a *Kapp) Delete(appName string, startedApplyingFunc func(), changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
 	args, err := a.addDeleteArgs([]string{"delete"})
 	if err != nil {
 		return exec.NewCmdRunResultWithErr(err)
 	}
 
-	args, env := a.addGenericArgs(args)
+	args, env := a.addGenericArgs(args, appName)
 
 	cmd := goexec.Command("kapp", args...)
 	cmd.Env = append(os.Environ(), env...)
@@ -87,7 +87,7 @@ func (a *Kapp) Delete(startedApplyingFunc func(), changedFunc func(exec.CmdRunRe
 	return result
 }
 
-func (a *Kapp) Inspect() exec.CmdRunResult {
+func (a *Kapp) Inspect(appName string) exec.CmdRunResult {
 	args, err := a.addInspectArgs([]string{
 		"inspect",
 		// PodMetrics rapidly get/created and removed, hence lets hide them
@@ -99,7 +99,7 @@ func (a *Kapp) Inspect() exec.CmdRunResult {
 		return exec.NewCmdRunResultWithErr(err)
 	}
 
-	args, env := a.addGenericArgs(args)
+	args, env := a.addGenericArgs(args, appName)
 
 	var stdoutBs, stderrBs bytes.Buffer
 
@@ -201,8 +201,8 @@ func (a *Kapp) addRawOpts(args []string, opts []string, allowedFlagSet exec.Flag
 	return args, nil
 }
 
-func (a *Kapp) addGenericArgs(args []string) ([]string, []string) {
-	args = append(args, []string{"--app", a.managedName()}...)
+func (a *Kapp) addGenericArgs(args []string, appName string) ([]string, []string) {
+	args = append(args, []string{"--app", appName}...)
 	env := []string{}
 
 	if len(a.genericOpts.Namespace) > 0 {

@@ -8,13 +8,13 @@ import (
 )
 
 type Deploy interface {
-	Deploy(tplOutput string, startedApplyingFunc func(),
+	Deploy(tplOutput string, appName string, startedApplyingFunc func(),
 		changedFunc func(exec.CmdRunResult)) exec.CmdRunResult
 
-	Delete(startedApplyingFunc func(),
+	Delete(appName string, startedApplyingFunc func(),
 		changedFunc func(exec.CmdRunResult)) exec.CmdRunResult
 
-	Inspect() exec.CmdRunResult
+	Inspect(appName string) exec.CmdRunResult
 }
 
 type GenericOpts struct {
