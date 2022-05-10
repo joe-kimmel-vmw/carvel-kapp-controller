@@ -40,6 +40,8 @@ func NewKapp(opts v1alpha1.AppDeployKapp, genericOpts ProcessedGenericOpts,
 	return &Kapp{opts, genericOpts, globalDeployRawOpts, cancelCh, cmdRunner}
 }
 
+// Deploy takes the output from templating, and the app name,
+// it shells out, running kapp deploy ...
 func (a *Kapp) Deploy(tplOutput string, appName string, startedApplyingFunc func(),
 	changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
 
@@ -65,6 +67,7 @@ func (a *Kapp) Deploy(tplOutput string, appName string, startedApplyingFunc func
 	return result
 }
 
+// Delete takes the app name, it shells out, running kapp delete ...
 func (a *Kapp) Delete(appName string, startedApplyingFunc func(), changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
 	args, err := a.addDeleteArgs([]string{"delete"})
 	if err != nil {
@@ -87,6 +90,7 @@ func (a *Kapp) Delete(appName string, startedApplyingFunc func(), changedFunc fu
 	return result
 }
 
+// Inspect takes the app name, it shells out, running kapp inspect ...
 func (a *Kapp) Inspect(appName string) exec.CmdRunResult {
 	args, err := a.addInspectArgs([]string{
 		"inspect",
