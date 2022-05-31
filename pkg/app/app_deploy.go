@@ -11,6 +11,8 @@ import (
 	"github.com/vmware-tanzu/carvel-kapp-controller/pkg/exec"
 )
 
+const appSuffix string = ".app"
+
 func (a *App) deploy(tplOutput string, changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
 	err := a.blockDeletion()
 	if err != nil {
@@ -34,7 +36,7 @@ func (a *App) deploy(tplOutput string, changedFunc func(exec.CmdRunResult)) exec
 				return exec.NewCmdRunResultWithErr(fmt.Errorf("Preparing kapp: %s", err))
 			}
 
-			result = kapp.Deploy(tplOutput, a.app.Name+".app", a.startFlushingAllStatusUpdates, changedFunc)
+			result = kapp.Deploy(tplOutput, a.app.Name+appSuffix, a.startFlushingAllStatusUpdates, changedFunc)
 
 		default:
 			result.AttachErrorf("%s", fmt.Errorf("Unsupported way to deploy"))
@@ -66,7 +68,7 @@ func (a *App) delete(changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
 					return exec.NewCmdRunResultWithErr(fmt.Errorf("Preparing kapp: %s", err))
 				}
 
-				result = kapp.Delete(a.app.Name+".app", a.startFlushingAllStatusUpdates, changedFunc)
+				result = kapp.Delete(a.app.Name+appSuffix, a.startFlushingAllStatusUpdates, changedFunc)
 
 			default:
 				result.AttachErrorf("%s", fmt.Errorf("Unsupported way to delete"))
@@ -107,7 +109,7 @@ func (a *App) inspect() exec.CmdRunResult {
 					return exec.NewCmdRunResultWithErr(fmt.Errorf("Preparing kapp: %s", err))
 				}
 
-				result = kapp.Inspect(a.app.Name + ".app")
+				result = kapp.Inspect(a.app.Name + appSuffix)
 			}
 
 		default:

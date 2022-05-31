@@ -69,7 +69,7 @@ func (a *Kapp) Deploy(tplOutput string, appName string, startedApplyingFunc func
 
 // Delete takes the app name, it shells out, running kapp delete ...
 func (a *Kapp) Delete(appName string, startedApplyingFunc func(), changedFunc func(exec.CmdRunResult)) exec.CmdRunResult {
-	args, err := a.addDeleteArgs([]string{"delete"})
+	args, err := a.addDeleteArgs([]string{"delete", "--prev-app", a.managedName()})
 	if err != nil {
 		return exec.NewCmdRunResultWithErr(err)
 	}
